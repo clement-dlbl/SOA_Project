@@ -1,0 +1,1 @@
+[{"id":"e4d88c8d.43056","type":"status","z":"57d47c43.8a0944","name":"Status of signout button","scope":["3217d0b5.522ce","2f06f06a.b2bf"],"x":680,"y":420,"wires":[["60bc6e22.99aa4"]]}]
