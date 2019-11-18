@@ -1,4 +1,4 @@
-package fr.Project_SOA.Presence.Mapper;
+package fr.project_soa.presence.mapper;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

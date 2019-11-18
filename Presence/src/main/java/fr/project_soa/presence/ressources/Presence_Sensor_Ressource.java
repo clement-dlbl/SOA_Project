@@ -1,10 +1,7 @@
 
-package fr.Project_SOA.Presence.Ressources;
+package fr.project_soa.presence.ressources;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.regex.*;
-
 import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,15 +12,12 @@ import org.xml.sax.InputSource;
 import javax.xml.xpath.*;
 
 
-import org.eclipse.om2m.commons.resource.ContentInstance;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.*;
 
-import fr.Project_SOA.Presence.Mapper.Mapper;
-import fr.Project_SOA.Presence.Sensor.Presence_Sensor;
-import fr.Project_SOA.Presence.oM2M_Client.Client;
-import fr.Project_SOA.Presence.oM2M_Client.Response;
+import fr.project_soa.presence.sensor.Presence_Sensor;
+import fr.project_soa.presence.onem2m_client.Client;
+import fr.project_soa.presence.onem2m_client.Response;
 
 
 

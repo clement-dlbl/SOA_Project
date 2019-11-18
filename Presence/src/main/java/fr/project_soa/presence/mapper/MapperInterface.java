@@ -1,4 +1,4 @@
-package fr.Project_SOA.Presence.Mapper;
+package fr.project_soa.presence.mapper;
 /**
  * Interface for the mapping operations
  *

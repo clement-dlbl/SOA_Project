@@ -1,4 +1,4 @@
-package fr.Project_SOA.Master.Client;
+package fr.project_soa.presence.onem2m_client;
 
 import java.io.IOException;
 

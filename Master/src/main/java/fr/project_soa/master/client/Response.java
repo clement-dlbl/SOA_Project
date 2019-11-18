@@ -1,4 +1,4 @@
-package fr.Project_SOA.Master.Client;
+package fr.project_soa.master.client;
 
 /**
  * Class to store the response from a request

@@ -1,6 +1,5 @@
+package fr.project_soa.master.client;
 
-
-package fr.Project_SOA.Master.Client;
 import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
