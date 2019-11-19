@@ -1,29 +1,30 @@
 
 package fr.Project_SOA.Presence.Ressources;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.regex.*;
-
 import java.io.StringReader;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-
-import javax.xml.xpath.*;
-
-
-import org.eclipse.om2m.commons.resource.ContentInstance;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.*;
-
-import fr.Project_SOA.Presence.Mapper.Mapper;
 import fr.Project_SOA.Presence.Sensor.Presence_Sensor;
 import fr.Project_SOA.Presence.oM2M_Client.Client;
 import fr.Project_SOA.Presence.oM2M_Client.Response;
+import obix.Obj;
+import obix.io.ObixDecoder;
 
 
 
@@ -47,14 +48,34 @@ public class Presence_Sensor_Ressource {
 	public String Retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
 		Client client = new Client();
 		
-		Response resp = client.retrieve("http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Presence_Detection/cin_413685144", "admin:admin");
+		Response resp = client.retrieve("http://127.0.0.1:8080/~/in-cse/cin-710869350", "admin:admin");
 		
-		System.out.println(resp.getRepresentation());
+		// System.out.println(resp.getRepresentation());
 		String utf8 = resp.getRepresentation().replace("&lt;", "<");
 		utf8 = utf8.replace("&quot;", "\"");
 		utf8 = utf8.replace("&gt;", ">");
 		System.out.println(utf8);
 		
+		/* Cutting the string */
+		int begin = utf8.indexOf("<obj>");
+		int end = utf8.indexOf("</obj>");
+		String obix_XML = utf8.substring(begin, end+6);
+		
+		
+		System.out.println(obix_XML);
+		
+		/*using oBIX library*/
+		Obj obj = ObixDecoder.fromString(obix_XML);
+		
+		System.out.println(obj.get("category") + " : " + obj.get("data"));
+		String category = obj.get("category").toString();
+		//int data = (int)obj.get("data").toString().atoi;
+		System.out.println(category);
+		
+		return obj.get("category") + " : " + obj.get("data");
+		
+		
+		/*
 		XPathFactory xpf = XPathFactory.newInstance();
 		XPath path = xpf.newXPath();
 		Document xml = convertStringToXMLDocument(utf8);
@@ -70,9 +91,9 @@ public class Presence_Sensor_Ressource {
 		
 		//System.out.println(node.getNodeName() + " : " + node.getNodeValue());
 		System.out.println(list.getLength());
-		return resp.getRepresentation();
+		return resp.getRepresentation();*/
 	}
-	
+	/*
 	private static Document convertStringToXMLDocument(String xmlString) 
     {
         //Parser that produces DOM object trees from XML content
@@ -95,5 +116,5 @@ public class Presence_Sensor_Ressource {
         }
         return null;
     }
-	
+	*/
 }
