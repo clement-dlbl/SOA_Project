@@ -1,14 +1,16 @@
 package fr.project_soa.master.ressources;
 
-import java.lang.reflect.Array;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import fr.project_soa.master.Config;
-import fr.project_soa.master.model.*;
+import fr.project_soa.master.model.Alarm;
+import fr.project_soa.master.model.Presence_Sensor;
 import fr.project_soa.master.use_case_1.UC1_main;
 
 @RestController
@@ -28,8 +30,12 @@ public class UC1 {
 		List<String> res = new ArrayList<String>();
 		res.add("Presence status : " + res_presence.isPresence());
 		res.add("Alarm status : " + res_alarm.getStatus());
-		
-		res.add("Is alarm launched ?" + uc1_main.triggerAlarm(res_presence.isPresence(), res_alarm.getStatus()));
+		System.out.println("before Triggering Alarm");
+		try {
+			res.add("Is alarm launched ?" + uc1_main.triggerAlarm(res_presence.isPresence(), res_alarm.getStatus()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		return res;
 	}

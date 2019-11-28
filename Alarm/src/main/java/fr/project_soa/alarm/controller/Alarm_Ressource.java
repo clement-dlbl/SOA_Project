@@ -23,7 +23,7 @@ public class Alarm_Ressource {
 	@GetMapping("/rooms/{name}/sensors/alarm")
 	public Alarm Check_Window_Open(@PathVariable String name) {
 		//String value = retrieve("http://localhost:8080/~/in-cse/cnt-541625948", "admin:admin");
-		Alarm alarm = new Alarm(name, value);
+		Alarm alarm = new Alarm(name, "off");
 		
 		//return "The alarm is located in room " + name +"\n. His status is " + alarm.getStatus();
 		return alarm;
