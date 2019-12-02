@@ -26,13 +26,13 @@ public class UC1_main {
 	public String triggerAlarm(boolean presence, String status) throws IOException {
 		LocalTime currentTime = LocalTime.now();
 		Client client = new Client();
-		
+		String message = "";
 		
 		System.out.println("Trigger Alarm");
 		
 		
 		if (currentTime.getHour()>23 || currentTime.getHour()<7 && presence == true) {
-			System.out.println("Trigger Alarm");
+			message = "Trigger Alarm";
 			//Post OM2M cin_Alarm
 			fr.project_soa.master.client.Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Presence_Detection/la", "admin:admin");
 			System.out.println("[Master : if : ] : "+resp);
@@ -53,7 +53,7 @@ public class UC1_main {
 			System.out.println("[Master : if : ] Alarm triggered");
 			System.out.println(res);
 		}else {
-			System.out.println("Alarm not triggered");
+			message= "Alarm not triggered";
 			/*String cinAlarm = "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n"+ 
 				    "<cnf>message</cnf>\n"+
 				    "<con>\n"+
@@ -71,7 +71,7 @@ public class UC1_main {
 		}
 		
 		System.out.println("It is : " + currentTime);
-		return currentTime.toString();
+		return currentTime.toString()+" : "+message;
 	}
 	
 }
