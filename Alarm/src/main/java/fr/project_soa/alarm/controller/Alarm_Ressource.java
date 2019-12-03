@@ -65,6 +65,6 @@ public class Alarm_Ressource {
 		alarm_sens.setPresence(obj.get("data").toString());
 		
 		return alarm_sens;
-		
+	}
 	
 }

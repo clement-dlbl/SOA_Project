@@ -33,18 +33,7 @@ public class UC1_main {
 		
 		if (currentTime.getHour()>23 || currentTime.getHour()<7 && presence == true) {
 			message = "Trigger Alarm";
-			//Post OM2M cin_Alarm
-			//fr.project_soa.master.client.Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Presence_Detection/la", "admin:admin");
-			//System.out.println("[Master : if : ] : "+resp);
-			/*"<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n"+ 
-		    "<cnf>message</cnf>\n"+
-		    "<con>\n"+
-		      "&lt;obj&gt;\n"+
-		        "&lt;str name=&quot;category&quot; val=&quot;Alarm &quot;/&gt;\n"+
-		        "&lt;int name=&quot;data&quot; val=&quot;ON&quot;/&gt;\n"+
-		      "&lt;/obj&gt;\n"+
-		    "</con>\n"+
-		"</m2m:cin>";*/
+
 			ContentInstance dataInstance = new ContentInstance();
 			dataInstance.setContent(Alarm.getDataRep("Alarm", "ON"));
 			dataInstance.setContentInfo("application/obix:0");
@@ -54,15 +43,8 @@ public class UC1_main {
 			System.out.println(res);
 		}else {
 			message= "Alarm not triggered";
-			/*String cinAlarm = "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n"+ 
-				    "<cnf>message</cnf>\n"+
-				    "<con>\n"+
-				      "&lt;obj&gt;\n"+
-				        "&lt;str name=&quot;category&quot; val=&quot;Alarm &quot;/&gt;\n"+
-				        "&lt;int name=&quot;data&quot; val=&quot;OFF&quot;/&gt;\n"+
-				      "&lt;/obj&gt;\n"+
-				    "</con>\n"+
-				"</m2m:cin>";*/
+
+			
 			ContentInstance dataInstance = new ContentInstance();
 			dataInstance.setContent(Alarm.getDataRep("Alarm", "OFF"));
 			dataInstance.setContentInfo("application/obix:0");
