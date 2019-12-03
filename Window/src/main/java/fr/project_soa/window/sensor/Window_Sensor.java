@@ -1,19 +1,23 @@
 package fr.project_soa.window.sensor;
 
 public class Window_Sensor {
-	private String location;
+	private String category;
 	private String status;
 	
-	public Window_Sensor(String location, String status) {
-		this.location = location;
+	public Window_Sensor() {
+		
+	}
+
+	public Window_Sensor(String category, String status) {
+		this.category = category;
 		this.status = status;
 	}
 	
-	public String getLocation() {
-		return location;
+	public String getCategory() {
+		return category;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getStatus() {
 		return status;

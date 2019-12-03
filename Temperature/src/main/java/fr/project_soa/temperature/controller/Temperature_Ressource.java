@@ -61,7 +61,7 @@ public class Temperature_Ressource {
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
 		inside_temp_sens.setCategory(obj.get("category").toString());
-		inside_temp_sens.setData(Double.valueOf(obj.get("data").toString()));
+		inside_temp_sens.setData(obj.get("data"));
 		inside_temp_sens.setUnit(obj.get("unit").toString());
 		
 		return inside_temp_sens;

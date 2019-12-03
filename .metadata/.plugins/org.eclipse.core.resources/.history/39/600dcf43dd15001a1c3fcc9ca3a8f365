@@ -1,0 +1,8 @@
+package fr.project_soa.master.model;
+
+public class Snippet {
+	public static void main(String[] args) {
+		double
+	}
+}
+
