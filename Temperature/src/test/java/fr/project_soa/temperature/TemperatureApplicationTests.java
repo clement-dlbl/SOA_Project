@@ -1,4 +1,4 @@
-package fr.project_soa.temperature;
+package fr.Project_SOA.Temperature;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

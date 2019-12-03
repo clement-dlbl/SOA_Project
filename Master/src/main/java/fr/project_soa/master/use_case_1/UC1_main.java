@@ -34,8 +34,8 @@ public class UC1_main {
 		if (currentTime.getHour()>23 || currentTime.getHour()<7 && presence == true) {
 			message = "Trigger Alarm";
 			//Post OM2M cin_Alarm
-			fr.project_soa.master.client.Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Presence_Detection/la", "admin:admin");
-			System.out.println("[Master : if : ] : "+resp);
+			//fr.project_soa.master.client.Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Presence_Detection/la", "admin:admin");
+			//System.out.println("[Master : if : ] : "+resp);
 			/*"<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n"+ 
 		    "<cnf>message</cnf>\n"+
 		    "<con>\n"+
@@ -66,8 +66,8 @@ public class UC1_main {
 			ContentInstance dataInstance = new ContentInstance();
 			dataInstance.setContent(Alarm.getDataRep("Alarm", "OFF"));
 			dataInstance.setContentInfo("application/obix:0");
-			fr.project_soa.master.client.Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Alarm", mapper.marshal(dataInstance), ORIGINATOR, "4");
-			System.out.println("[Master : else : ] "+res);
+			//fr.project_soa.master.client.Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Alarm", mapper.marshal(dataInstance), ORIGINATOR, "4");
+			//System.out.println("[Master : else : ] "+res);
 		}
 		
 		System.out.println("It is : " + currentTime);

@@ -1,4 +1,4 @@
-package fr.project_soa.window;
+package fr.Project_SOA.Window;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

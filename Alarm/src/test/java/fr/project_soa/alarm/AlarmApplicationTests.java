@@ -1,4 +1,4 @@
-package fr.project_soa.alarm;
+package fr.Project_SOA.Alarm;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
