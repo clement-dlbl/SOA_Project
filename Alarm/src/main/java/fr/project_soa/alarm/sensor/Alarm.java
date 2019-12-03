@@ -1,32 +1,31 @@
 package fr.project_soa.alarm.sensor;
 
 public class Alarm {
-	private String location;
-	private String status;
-	
+	private String category;
+	private String data;
 	public Alarm() {
 		
 	}
 	
-	public Alarm(String location, String status) {
-		this.location = location;
-		this.status = status;
+	public Alarm(String category, String data) {
+		this.category = category;
+		this.data = data;
 	}
 	
-	public String getLocation() {
-		return location;
+	public String getCategory() {
+		return category;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocation(String category) {
+		this.category = category;
 	}
 	public String getStatus() {
-		return status;
+		return data;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(String data) {
+		this.data = data;
 	}
 	
 	public String toString() {
-		return this.location + this.status;
+		return this.category + this.data;
 	}
 }
