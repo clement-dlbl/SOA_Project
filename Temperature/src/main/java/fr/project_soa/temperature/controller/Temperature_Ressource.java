@@ -15,7 +15,7 @@ import fr.project_soa.temperature.onem2m_client.Client;
 import fr.project_soa.temperature.onem2m_client.Response;
 import fr.project_soa.temperature.sensor.Inside_Temp;
 
-import obix.Ojb;
+import obix.Obj;
 import obix.io.ObixDecoder; 
 
 
@@ -36,7 +36,7 @@ public class Temperature_Ressource {
 	}*/
 	
 	
-	@GetMapping("/rooms/{name}/sensors/temperature/{value}")
+	@GetMapping("/rooms/{name}/sensors/temperature/")
 	public Inside_Temp retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
 		Client client = new Client();
 		Inside_Temp inside_temp_sens = new Inside_Temp();
@@ -61,7 +61,7 @@ public class Temperature_Ressource {
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
 		inside_temp_sens.setCategory(obj.get("category").toString());
-		inside_temp_sens.setData(obj.get("data").toString());
+		inside_temp_sens.setData(Double.valueOf(obj.get("data").toString()));
 		inside_temp_sens.setUnit(obj.get("unit").toString());
 		
 		return inside_temp_sens;

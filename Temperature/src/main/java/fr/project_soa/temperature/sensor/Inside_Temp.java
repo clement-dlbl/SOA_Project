@@ -2,16 +2,17 @@ package fr.project_soa.temperature.sensor;
 
 public class Inside_Temp {
 	private String category;
-	private float data;
+	private double data;
 	private String unit; 
 	
 	public Inside_Temp() {
 		
 	}
 	
-	public Inside_Temp(String category, float data, String unit) {
+	public Inside_Temp(String category, double data, String unit) {
 		this.category = category;
 		this.data = data;
+		this.unit = unit;
 	}
 	
 	public String getCategory() {
@@ -20,10 +21,10 @@ public class Inside_Temp {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public float getData() {
+	public double getData() {
 		return data;
 	}
-	public void setData(float data) {
+	public void setData(double data) {
 		this.data = data;
 	}
 	public String getUnit() {
