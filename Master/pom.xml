@@ -50,16 +50,15 @@
 		    <version>2.6</version>
 		</dependency>
 		
-		<!-- OBIX -->
-		<dependency>
-         <groupId>obix</groupId>
-         <artifactId>obix</artifactId>
-         <scope>system</scope>
-         <version>1.0</version>
-         <systemPath>${basedir}/libs/obix.jar</systemPath>
-      </dependency>
 	</dependencies>
 
+	<repositories>
+	    <repository>
+	        <id>localrepository</id>
+	        <url>file://${project.basedir}/libs</url>
+	    </repository>
+	</repositories>
+	
 	<build>
 		<plugins>
 			<plugin>
