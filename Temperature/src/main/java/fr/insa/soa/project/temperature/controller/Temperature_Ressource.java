@@ -19,7 +19,7 @@ import obix.io.ObixDecoder;
 
 
 @RestController
-public class Temerature_Ressource {
+public class Temperature_Ressource {
 	
 	@GetMapping("/rooms/{name}")
 	public String Manage_Room_1(@PathVariable String name) {

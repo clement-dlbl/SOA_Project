@@ -1,13 +1,13 @@
-package fr.insa.soa.project.window.sensor;
+package fr.insa.soa.project.door.sensor;
 
-public class Window {
+public class Door_sensor {
 	private String category;
 	private String data;
-	public Window() {
+	public Door_sensor() {
 		
 	}
 	
-	public Window(String category, String data) {
+	public Door_sensor(String category, String data) {
 		this.category = category;
 		this.data = data;
 	}

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import fr.insa.soa.project.door.sensor.Door;
+import fr.insa.soa.project.door.sensor.Door_sensor;
 import fr.insa.soa.project.door.onem2m_client.Client;
 import fr.insa.soa.project.door.onem2m_client.Response;
 import obix.Obj;
@@ -38,9 +38,9 @@ public class Door_Ressource {
 	
 	
 	@GetMapping("/rooms/{name}/sensors/alarm")
-	public Door retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
+	public Door_sensor retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
 		Client client = new Client();
-		Door alarm_sens = new Door();
+		Door_sensor alarm_sens = new Door_sensor();
 		
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Alarm/la", "admin:admin");
 		

@@ -1,13 +1,13 @@
-package fr.insa.soa.project.presence.sensor;
+package fr.insa.soa.project.alarm.sensor;
 
-public class Presence {
+public class Alarm_sensor {
 	private String category;
 	private String data;
-	public Presence() {
+	public Alarm_sensor() {
 		
 	}
 	
-	public Presence(String category, String data) {
+	public Alarm_sensor(String category, String data) {
 		this.category = category;
 		this.data = data;
 	}

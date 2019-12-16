@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import fr.insa.soa.project.alarm.sensor.Alarm;
+import fr.insa.soa.project.alarm.sensor.Alarm_sensor;
 import fr.insa.soa.project.alarm.onem2m_client.Client;
 import fr.insa.soa.project.alarm.onem2m_client.Response;
 import obix.Obj;
@@ -38,9 +38,9 @@ public class Alarm_Ressource {
 	
 	
 	@GetMapping("/rooms/{name}/sensors/alarm")
-	public Alarm retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
+	public Alarm_sensor retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
 		Client client = new Client();
-		Alarm alarm_sens = new Alarm();
+		Alarm_sensor alarm_sens = new Alarm_sensor();
 		
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Alarm/la", "admin:admin");
 		
