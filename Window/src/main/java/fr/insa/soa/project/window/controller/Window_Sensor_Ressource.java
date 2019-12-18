@@ -57,7 +57,7 @@ public class Window_Sensor_Ressource {
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
 		window_sens.setCategory(obj.get("category").toString());
-		window_sens.setStatus(obj.get("data").toString());
+		window_sens.setStatus(obj.get("status").toString());
 		
 		return window_sens;
 		
