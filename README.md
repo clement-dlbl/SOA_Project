@@ -5,6 +5,8 @@
     Mathilde Cornille
     Vincent Laurens
 
+# Foolder Hierarchy
+
 
 
 # How to deploy our infrastructure and application
