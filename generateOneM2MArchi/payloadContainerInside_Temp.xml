@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<m2m:cnt xmlns:m2m = "http://www.onem2m.org/xml/protocols" rn = "Inside_Temp">
+		<lbl>Type/sensor Category/Temperature Location/Floor1</lbl>
+</m2m:cnt>
