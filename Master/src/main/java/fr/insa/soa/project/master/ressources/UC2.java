@@ -13,8 +13,8 @@ import org.springframework.web.client.RestTemplate;
 
 import fr.insa.soa.project.master.Config;
 import fr.insa.soa.project.master.model.Window_Sensor;
+import fr.insa.soa.project.master.use_cases.UC2_main;
 import fr.insa.soa.project.master.model.Inside_Temp;
-import fr.insa.soa.project.master.use_case_2.UC2_main;
 
 @RestController
 public class UC2 {

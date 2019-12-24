@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import fr.insa.soa.project.door.sensor.Door_sensor;
-import fr.insa.soa.project.door.onem2m_client.Client;
-import fr.insa.soa.project.door.onem2m_client.Response;
+
+import om2m.Client;
+import om2m.Response;
 import obix.Obj;
 import obix.io.ObixDecoder;
 

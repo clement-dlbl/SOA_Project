@@ -3,14 +3,11 @@ package fr.insa.soa.project.presence.sensor;
 public class Presence_Sensor {
 	private String category;
 	private boolean presence;
+	private int floor;
+	private int room;
 	
 	public Presence_Sensor() {
 		
-	}
-	
-	public Presence_Sensor(String category, boolean presence) {
-		this.category = category;
-		this.presence = presence;
 	}
 	
 	public String getCategory() {
@@ -26,6 +23,14 @@ public class Presence_Sensor {
 
 	public void setPresence(boolean presence) {
 		this.presence = presence;
+	}
+	
+	public void setFloor(int floor) {
+		this.floor = floor;
+	}
+	
+	public void setRoom(int room) {
+		this.room = room;
 	}
 
 	

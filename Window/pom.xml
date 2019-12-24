@@ -50,14 +50,31 @@
 		    <version>2.6</version>
 		</dependency>
 		
+		<dependency>
+		    <groupId>om2m</groupId>
+		    <artifactId>om2m</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/om2m.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+		    <groupId>om2m_client</groupId>
+		    <artifactId>om2m_client</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/om2m_client.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+		    <groupId>obix</groupId>
+		    <artifactId>obix</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/obix.jar</systemPath>
+		</dependency>
+		
 	</dependencies>
-
-	<repositories>
-	    <repository>
-	        <id>localrepository</id>
-	        <url>file://${project.basedir}/libs</url>
-	    </repository>
-	</repositories>
 	
 	<build>
 		<plugins>

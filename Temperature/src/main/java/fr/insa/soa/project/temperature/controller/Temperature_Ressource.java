@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.insa.soa.project.temperature.mapper.Mapper;
-import fr.insa.soa.project.temperature.mapper.MapperInterface;
-import fr.insa.soa.project.temperature.model.Temperature_Model;
-import fr.insa.soa.project.temperature.onem2m_client.Client;
-import fr.insa.soa.project.temperature.onem2m_client.Response;
-import fr.insa.soa.project.temperature.sensor.Temperature_sensor;
 import obix.Obj;
 import obix.io.ObixDecoder;
+import om2m.Client;
+import om2m.Response;
+import om2m_mapper.Mapper;
+import om2m_mapper.MapperInterface;
+
+
+import fr.insa.soa.project.temperature.model.Temperature_Model;
+import fr.insa.soa.project.temperature.sensor.Temperature_sensor;
+
 
 
 

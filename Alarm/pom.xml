@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="utf-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -36,7 +34,6 @@
 			</exclusions>
 		</dependency>
 		
-		<!-- OM2M -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -49,14 +46,31 @@
 		    <artifactId>commons-io</artifactId>
 		    <version>2.6</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>om2m</groupId>
+		    <artifactId>om2m</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/om2m.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+		    <groupId>om2m_client</groupId>
+		    <artifactId>om2m_client</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/om2m_client.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+		    <groupId>obix</groupId>
+		    <artifactId>obix</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/obix.jar</systemPath>
+		</dependency>
 	</dependencies>
-	
-	<repositories>
-	    <repository>
-	        <id>localrepository</id>
-	        <url>file://${project.basedir}/libs</url>
-	    </repository>
-	</repositories>
 
 	<build>
 		<plugins>

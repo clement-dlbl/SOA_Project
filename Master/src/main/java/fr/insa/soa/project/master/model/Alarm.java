@@ -20,8 +20,8 @@ public class Alarm {
 	public String getLocation() {
 		return location;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLocation(int floor, int room) {
+		this.location = "Floor:"+floor+"Room"+room;
 	}
 	public String getStatus() {
 		return status;

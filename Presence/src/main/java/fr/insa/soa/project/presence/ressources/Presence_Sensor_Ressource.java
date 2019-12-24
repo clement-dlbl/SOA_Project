@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.insa.soa.project.presence.sensor.Presence_Sensor;
-import fr.insa.soa.project.presence.onem2m_client.Client;
-import fr.insa.soa.project.presence.onem2m_client.Response;
+import om2m.Client;
+import om2m.Response;
 
 import obix.Obj;
 import obix.io.ObixDecoder;
+
+import fr.insa.soa.project.presence.sensor.Presence_Sensor;
+
 
 
 
@@ -21,26 +23,12 @@ import obix.io.ObixDecoder;
 @RestController
 public class Presence_Sensor_Ressource {
 	
-	@GetMapping("/rooms/{name}")
-	public String manage_Room_1(@PathVariable String name) {
-		return "You are in room " + name;
-	}
-	
-	@GetMapping("/rooms/{name}/sensors/presence")
-	public Presence_Sensor check_Window_Open(@PathVariable String name) {
-		Presence_Sensor presence_sens = new Presence_Sensor(name, false);
-		//return "The presence sensor is located in room " + name +"\n. His status is " + presence_sens.isPresence();
-		return presence_sens;
-	}
-	
-	
-	
-	@GetMapping("/test_OM2M/{name}")
-	public Presence_Sensor retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
-		Client client = new Client();
+	@GetMapping("/{numFloor}/{numRoom}/sensors/presence")
+	public Presence_Sensor check_Window_Open(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException {
 		Presence_Sensor presence_sens = new Presence_Sensor();
+		Client client = new Client();
 		
-		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Presence_Detection/la", "admin:admin");
+		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Presence_Detection/la", "admin:admin");
 		
 		// System.out.println(resp.getRepresentation());
 		String utf8 = resp.getRepresentation().replace("&lt;", "<");
@@ -61,6 +49,8 @@ public class Presence_Sensor_Ressource {
 		
 		presence_sens.setCategory(obj.get("category").toString());
 		presence_sens.setPresence(obj.get("data").toString() == "true");
+		presence_sens.setFloor(numFloor);
+		presence_sens.setRoom(numRoom);
 		
 		return presence_sens;
 		
