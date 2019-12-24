@@ -7,7 +7,7 @@
 
         &lt;str name=&quot;category&quot; val=&quot;Door &quot;/&gt;
 
-        &lt;int name=&quot;data&quot; val=&quot;OPEN&quot;/&gt;
+        &lt;str name=&quot;data&quot; val=&quot;OPEN&quot;/&gt;
 
       &lt;/obj&gt;
 

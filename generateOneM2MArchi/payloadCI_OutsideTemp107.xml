@@ -9,7 +9,7 @@
 
         &lt;int name=&quot;data&quot; val=&quot;23&quot;/&gt;
 
-        &lt;int name=&quot;unit&quot; val=&quot;celsius&quot;/&gt;
+        &lt;str name=&quot;unit&quot; val=&quot;celsius&quot;/&gt;
 
       &lt;/obj&gt;
 
