@@ -48,7 +48,7 @@ public class Presence_Sensor_Ressource {
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
 		presence_sens.setCategory(obj.get("category").toString());
-		presence_sens.setPresence(obj.get("state").toString());
+		presence_sens.setStatus(obj.get("state").toString());
 		presence_sens.setFloor(numFloor);
 		presence_sens.setRoom(numRoom);
 		

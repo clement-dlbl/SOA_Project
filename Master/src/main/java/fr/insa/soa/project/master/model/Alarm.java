@@ -30,11 +30,11 @@ public class Alarm {
 		this.status = status;
 	}
 	//Create obix object to insert in oneM2M tree
-	public static String getDataRep(String category, String data) {
+	public static String getDataRep(String category, String state) {
 		// Create the obix object
 		Obj obj = new Obj();
 		obj.add(new Str("category", category));
-		obj.add(new Str("data", data));
+		obj.add(new Str("state", state));
 
 		return ObixEncoder.toString(obj);
 
