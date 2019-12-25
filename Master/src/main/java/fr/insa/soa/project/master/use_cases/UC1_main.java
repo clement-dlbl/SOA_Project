@@ -36,7 +36,7 @@ public class UC1_main {
 			message = "Trigger Alarm";
 
 			ContentInstance dataInstance = new ContentInstance();
-			dataInstance.setContent(Alarm.getDataRep("Alarm", "ON"));
+			dataInstance.setContent(Alarm.getDataRep("Floor"+floor+"_Manager/ROOM"+room,"Alarm", "ON"));
 			dataInstance.setContentInfo("application/obix:0");
 			
 			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Alarm", mapper.marshal(dataInstance), ORIGINATOR, "4");
@@ -47,7 +47,7 @@ public class UC1_main {
 
 			
 			ContentInstance dataInstance = new ContentInstance();
-			dataInstance.setContent(Alarm.getDataRep("Alarm", "OFF"));
+			dataInstance.setContent(Alarm.getDataRep("Floor"+floor+"_Manager/ROOM"+room, "Alarm", "OFF"));
 			dataInstance.setContentInfo("application/obix:0");
 			
 			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Alarm", mapper.marshal(dataInstance), ORIGINATOR, "4");

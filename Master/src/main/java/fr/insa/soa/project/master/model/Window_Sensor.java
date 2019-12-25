@@ -31,11 +31,12 @@ public class Window_Sensor {
 	}
 	
 	//Create obix object to insert in oneM2M tree
-	public static String getDataRep(String category, String status) {
+	public static String getDataRep(String location, String category, String status) {
 		// Create the obix object
 		Obj obj = new Obj();
+		obj.add(new Str("location", location));
 		obj.add(new Str("category", category));
-		obj.add(new Str("status", status));
+		obj.add(new Str("state", status));
 
 		return ObixEncoder.toString(obj);
 

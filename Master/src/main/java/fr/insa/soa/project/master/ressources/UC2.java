@@ -28,7 +28,6 @@ public class UC2 {
 		//Instanciate RestTemplate for Rest calls
 		RestTemplate restTemplate = new RestTemplate();
 		List<String> res = new ArrayList<String>();
-		System.out.println("test2");
 		
 		
 		try {
@@ -45,13 +44,13 @@ public class UC2 {
 	        JSONArray arr = obj.getJSONArray("records");
 	        
 	        for (int i = 0; i < arr.length(); i++) {
-	            double temp = arr.getJSONObject(i).getJSONObject("fields").getDouble("temperature_en_degre_c");	
+	            Double temp = arr.getJSONObject(i).getJSONObject("fields").getDouble("temperature_en_degre_c");	
 	            
 	          
 	            //retreive inside temp
-	    		Inside_Temp resIntemp = restTemplate.getForObject(Config.getTemperature_Service() + "/"+numFloor+"/ROOM"+numRoom+"/sensors/temperature/inside", Inside_Temp.class);
+	    		Inside_Temp resIntemp = restTemplate.getForObject(Config.getTemperature_Service() + "/"+numFloor+"/"+numRoom+"/sensors/temperature/inside", Inside_Temp.class);
 	    		//retreive Windows 
-	    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/"+numFloor+"/ROOM"+numRoom+"/sensors/window_sensor", Window_Sensor.class);
+	    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/"+numFloor+"/"+numRoom+"/sensor/window", Window_Sensor.class);
 	
 	    		try {
 					res.add(uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus(), numFloor, numRoom));

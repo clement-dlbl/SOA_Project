@@ -21,7 +21,7 @@ public class Alarm {
 		return location;
 	}
 	public void setLocation(int floor, int room) {
-		this.location = "Floor:"+floor+"Room"+room;
+		this.location = "Floor:"+floor+"/Room"+room;
 	}
 	public String getStatus() {
 		return status;
@@ -30,9 +30,10 @@ public class Alarm {
 		this.status = status;
 	}
 	//Create obix object to insert in oneM2M tree
-	public static String getDataRep(String category, String state) {
+	public static String getDataRep(String location, String category, String state) {
 		// Create the obix object
 		Obj obj = new Obj();
+		obj.add(new Str("location", location));
 		obj.add(new Str("category", category));
 		obj.add(new Str("state", state));
 

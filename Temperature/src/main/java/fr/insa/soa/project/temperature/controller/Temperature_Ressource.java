@@ -88,12 +88,12 @@ public class Temperature_Ressource {
 	
 	
 	
-	public String getDataRep(String location, String category, Double string, String unit) {
+	public String getDataRep(String location, String category, Double data, String unit) {
 		// Create the obix object
 		Obj obj = new Obj();
 		obj.add(new Str("location", location));
 		obj.add(new Str("category", category));
-		obj.add(new Str("data", String.valueOf(string)));
+		obj.add(new Str("data", String.valueOf(data)));
 		obj.add(new Str("unit", unit));
 
 		return ObixEncoder.toString(obj);

@@ -48,7 +48,7 @@ public class Window_Sensor_Ressource {
 		
 		window_sens.setLocation(obj.get("location").toString());
 		window_sens.setCategory(obj.get("category").toString());
-		window_sens.setStatus(obj.get("status").toString());
+		window_sens.setStatus(obj.get("state").toString());
 		
 		return window_sens;
 		

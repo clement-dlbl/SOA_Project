@@ -1,29 +1,36 @@
 package fr.insa.soa.project.master.model;
 
 public class Inside_Temp {
+	private String location;
 	private String category;
-	private double data;
+	private Double data;
 	private String unit; 
+	
 	
 	public Inside_Temp() {
 		
+		this.location ="";
+		this.category = "";
+		this.data = 0.;
+		this.unit = "";
 	}
 	
-	public Inside_Temp(String category, double data, String unit) {
-		this.category = category;
-		this.data = data;
+	public String getLocation() {
+		return location;
 	}
-	
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	public String getCategory() {
 		return category;
 	}
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public double getData() {
+	public Double getData() {
 		return data;
 	}
-	public void setData(double data) {
+	public void setData(Double data) {
 		this.data = data;
 	}
 	public String getUnit() {

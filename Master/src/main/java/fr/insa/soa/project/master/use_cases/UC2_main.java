@@ -23,7 +23,7 @@ public class UC2_main {
 		this.id = id;
 	}
 
-	public String openWindow(double in_temp, double out_temp, String window_status, int floor, int room) throws IOException {
+	public String openWindow(Double d, Double temp, String window_status, int floor, int room) throws IOException {
 		
 		Client client = new Client();
 		String message = "";
@@ -31,12 +31,12 @@ public class UC2_main {
 		System.out.println("Aeration - Open Window");
 		
 		
-		if (in_temp > out_temp && window_status == "CLOSE") {
+		if (d > temp && window_status == "CLOSE") {
 			message = "Open Window";
 
 			
 			ContentInstance dataInstance = new ContentInstance();
-			dataInstance.setContent(Window_Sensor.getDataRep("Window", "OPEN"));
+			dataInstance.setContent(Window_Sensor.getDataRep("Floor"+floor+"_Manager/ROOM"+room,"Window", "OPEN"));
 			dataInstance.setContentInfo("application/obix:0");
 			
 			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
@@ -47,7 +47,7 @@ public class UC2_main {
 			
 			
 			ContentInstance dataInstance = new ContentInstance();
-			dataInstance.setContent(Window_Sensor.getDataRep("Window", "CLOSE"));
+			dataInstance.setContent(Window_Sensor.getDataRep("Floor"+floor+"_Manager/ROOM"+room, "Window", "CLOSE"));
 			dataInstance.setContentInfo("application/obix:0");
 			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
 			System.out.println("[Master : else : ] "+res);

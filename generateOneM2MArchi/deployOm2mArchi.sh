@@ -25,7 +25,7 @@ for floor in Floor{1,2}_Manager ; do
 	    echo ""
 
         # Creation of the Sensors :
-		for sensor in Presence Outside_Temp Inside_Temp ; do
+		for sensor in Outside_Temp Inside_Temp ; do
 			curl -X POST "http://127.0.0.1:8080/~/in-cse/in-name/$floor/$room" -H 'cache-control: no-cache' -H 'content-type: application/xml;ty=3' -H 'x-m2m-origin: admin:admin' \
 				-d "<m2m:cnt xmlns:m2m=\"http://www.onem2m.org/xml/protocols\" rn=\"$sensor\">
 					</m2m:cnt>"
@@ -53,14 +53,14 @@ for floor in Floor{1,2}_Manager ; do
 		&lt;str name=&quot;location&quot; val=&quot;$floor/$room&quot;/&gt;
 		&lt;str name=&quot;category&quot; val=&quot;$category&quot;/&gt;
 		&lt;float name=&quot;data&quot; val=&quot;$data&quot;/&gt;
-		&lt;float name=&quot;unit&quot; val=&quot;$unit&quot;/&gt;
+		&lt;str name=&quot;unit&quot; val=&quot;$unit&quot;/&gt;
 	&lt;/obj&gt;
 </con>
 					</m2m:cin>"
 		done
 
 		# Creation of the Actuators :
-		for actuator in Alarm Window Door ; do
+		for actuator in Alarm Window Door Presence; do
 			curl -X POST "http://127.0.0.1:8080/~/in-cse/in-name/$floor/$room" -H 'cache-control: no-cache' -H 'content-type: application/xml;ty=3' -H 'x-m2m-origin: admin:admin' \
 				-d "<m2m:cnt xmlns:m2m=\"http://www.onem2m.org/xml/protocols\" rn=\"$actuator\">
 					</m2m:cnt>"
