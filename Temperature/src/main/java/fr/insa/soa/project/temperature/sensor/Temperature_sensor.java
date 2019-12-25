@@ -4,13 +4,12 @@ public class Temperature_sensor {
 	private String category;
 	private String data;
 	private String unit;
-	public Temperature_sensor() {
-		
-	}
 	
-	public Temperature_sensor(String category, String data) {
-		this.category = category;
-		this.data = data;
+	public Temperature_sensor() {
+		this.category = "";
+		this.data = "";
+		this.unit = "";
+		
 	}
 	
 	public String getCategory() {
@@ -19,10 +18,10 @@ public class Temperature_sensor {
 	/*public void setLocation(String category) {
 		this.category = category;
 	}*/
-	public String getStatus() {
-		return data;
+	public String getData() {
+		return this.data;
 	}
-	public void setStatus(String data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	

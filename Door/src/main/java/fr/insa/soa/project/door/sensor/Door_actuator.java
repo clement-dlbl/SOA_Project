@@ -1,15 +1,15 @@
 package fr.insa.soa.project.door.sensor;
 
-public class Door_sensor {
+public class Door_actuator {
 	private String category;
-	private String data;
-	public Door_sensor() {
+	private String state;
+	public Door_actuator() {
 		
 	}
 	
-	public Door_sensor(String category, String data) {
+	public Door_actuator(String category, String state) {
 		this.category = category;
-		this.data = data;
+		this.state = state;
 	}
 	
 	public String getCategory() {
@@ -19,14 +19,14 @@ public class Door_sensor {
 		this.category = category;
 	}*/
 	public String getStatus() {
-		return data;
+		return state;
 	}
-	public void setStatus(String data) {
-		this.data = data;
+	public void setStatus(String state) {
+		this.state = state;
 	}
 	
 	public String toString() {
-		return this.category + this.data;
+		return this.category + this.state;
 	}
 
 	public void setCategory(String category) {

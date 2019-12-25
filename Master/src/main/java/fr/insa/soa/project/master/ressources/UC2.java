@@ -8,19 +8,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import fr.insa.soa.project.master.Config;
 import fr.insa.soa.project.master.model.Window_Sensor;
 import fr.insa.soa.project.master.use_cases.UC2_main;
+import fr.insa.soa.project.master.model.Config;
 import fr.insa.soa.project.master.model.Inside_Temp;
 
 @RestController
 public class UC2 {
 	
-	@GetMapping("/Use_Case_2")
-	public List<String> getTemperature() {
+	@GetMapping("/Use_Case_2/{numFloor}/{numRoom}")
+	public List<String> getTemperature(@PathVariable int numFloor, @PathVariable int numRoom) {
 		//Simulate data base
 		UC2_main uc2_main = new UC2_main();
 		System.out.println("test");
@@ -48,12 +49,12 @@ public class UC2 {
 	            
 	          
 	            //retreive inside temp
-	    		Inside_Temp resIntemp = restTemplate.getForObject(Config.getTemperature_Service() + "/rooms/GEI213/sensors/temperature/inside", Inside_Temp.class);
+	    		Inside_Temp resIntemp = restTemplate.getForObject(Config.getTemperature_Service() + "/"+numFloor+"/ROOM"+numRoom+"/sensors/temperature/inside", Inside_Temp.class);
 	    		//retreive Windows 
-	    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/rooms/GEI213/sensors/window_sensor", Window_Sensor.class);
+	    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/"+numFloor+"/ROOM"+numRoom+"/sensors/window_sensor", Window_Sensor.class);
 	
 	    		try {
-					res.add(uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus()));
+					res.add(uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus(), numFloor, numRoom));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

@@ -23,7 +23,7 @@ public class UC2_main {
 		this.id = id;
 	}
 
-	public String openWindow(double in_temp, double out_temp, String window_status) throws IOException {
+	public String openWindow(double in_temp, double out_temp, String window_status, int floor, int room) throws IOException {
 		
 		Client client = new Client();
 		String message = "";
@@ -39,7 +39,7 @@ public class UC2_main {
 			dataInstance.setContent(Window_Sensor.getDataRep("Window", "OPEN"));
 			dataInstance.setContentInfo("application/obix:0");
 			
-			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Window_Position", mapper.marshal(dataInstance), ORIGINATOR, "4");
+			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
 			System.out.println("[Master : if : ] Window Opened");
 			System.out.println(res);
 		}else {
@@ -49,7 +49,7 @@ public class UC2_main {
 			ContentInstance dataInstance = new ContentInstance();
 			dataInstance.setContent(Window_Sensor.getDataRep("Window", "CLOSE"));
 			dataInstance.setContentInfo("application/obix:0");
-			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Window_Position", mapper.marshal(dataInstance), ORIGINATOR, "4");
+			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
 			System.out.println("[Master : else : ] "+res);
 		}
 		System.out.println(message);

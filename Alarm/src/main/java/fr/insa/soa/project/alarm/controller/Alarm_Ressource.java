@@ -40,6 +40,7 @@ public class Alarm_Ressource {
 		String utf8 = resp.getRepresentation().replace("&lt;", "<");
 		utf8 = utf8.replace("&quot;", "\"");
 		utf8 = utf8.replace("&gt;", ">");
+		System.out.print("After replace");
 		System.out.println(utf8);
 		
 		/* Cutting the string */
@@ -47,14 +48,15 @@ public class Alarm_Ressource {
 		int end = utf8.indexOf("</obj>");
 		String obix_XML = utf8.substring(begin, end+6);
 		
-		
+		System.out.println("Obix object");
 		System.out.println(obix_XML);
 		
 		/*using oBIX library*/
+		
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
 		alarm_sens.setCategory(obj.get("category").toString());
-		alarm_sens.setStatus(obj.get("data").toString());
+		alarm_sens.setStatus(obj.get("state").toString());
 		alarm_sens.setFloor(numFloor);
 		alarm_sens.setRoom(numRoom);
 		

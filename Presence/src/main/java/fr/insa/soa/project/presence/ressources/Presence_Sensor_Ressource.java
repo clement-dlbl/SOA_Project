@@ -28,7 +28,7 @@ public class Presence_Sensor_Ressource {
 		Presence_Sensor presence_sens = new Presence_Sensor();
 		Client client = new Client();
 		
-		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Presence_Detection/la", "admin:admin");
+		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Presence/la", "admin:admin");
 		
 		// System.out.println(resp.getRepresentation());
 		String utf8 = resp.getRepresentation().replace("&lt;", "<");
@@ -48,7 +48,7 @@ public class Presence_Sensor_Ressource {
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
 		presence_sens.setCategory(obj.get("category").toString());
-		presence_sens.setPresence(obj.get("data").toString() == "true");
+		presence_sens.setPresence(obj.get("state").toString());
 		presence_sens.setFloor(numFloor);
 		presence_sens.setRoom(numRoom);
 		

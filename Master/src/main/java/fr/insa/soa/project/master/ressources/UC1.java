@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import fr.insa.soa.project.master.Config;
 import fr.insa.soa.project.master.model.Alarm;
+import fr.insa.soa.project.master.model.Config;
 import fr.insa.soa.project.master.model.Presence_Sensor;
 import fr.insa.soa.project.master.use_cases.UC1_main;
 

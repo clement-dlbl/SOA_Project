@@ -21,19 +21,13 @@ import fr.insa.soa.project.window.sensor.Window_Sensor;
 @RestController
 public class Window_Sensor_Ressource {
 	
-	@GetMapping("/rooms/{name}")
-	public String Manage_Room_1(@PathVariable String name) {
-		return "You are in room " + name;
-	}
-
 	
-	
-	@GetMapping("/rooms/{name}/sensors/window_sensor")	
-	public Window_Sensor retrieve_OM2M(@PathVariable String name) throws IOException, XPathExpressionException {
+	@GetMapping("/{numFloor}/{numRoom}/sensor/window")	
+	public Window_Sensor retrieve_OM2M(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException, XPathExpressionException {
 		Client client = new Client();
 		Window_Sensor window_sens = new Window_Sensor();
 		
-		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor1_Manager/Window_Position/la", "admin:admin");
+		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Window/la", "admin:admin");
 		
 		// System.out.println(resp.getRepresentation());
 		String utf8 = resp.getRepresentation().replace("&lt;", "<");
@@ -54,6 +48,8 @@ public class Window_Sensor_Ressource {
 		
 		window_sens.setCategory(obj.get("category").toString());
 		window_sens.setStatus(obj.get("status").toString());
+		window_sens.setFloor(numFloor);
+		window_sens.setRoom(numRoom);
 		
 		return window_sens;
 		

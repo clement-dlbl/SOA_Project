@@ -1,4 +1,4 @@
-package fr.insa.soa.project.master;
+package fr.insa.soa.project.master.model;
 
 public class Config {
 	static private String Temperature_Service 	= "http://localhost:8082";
@@ -6,7 +6,6 @@ public class Config {
 	static private String Door_Service 			= "http://localhost:8084";
 	static private String Presence_Service 		= "http://localhost:8085";
 	static private String Alarm_Service 		= "http://localhost:8086";
-	//static private String Light_Service 		= "http://localhost:8087";
 	
 	public static String getTemperature_Service() {
 		return Temperature_Service;
