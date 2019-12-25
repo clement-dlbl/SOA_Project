@@ -47,6 +47,7 @@ public class Door_Ressource {
 		/*using oBIX library*/
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
+		door_actuator.setLocation(obj.get("location").toString());
 		door_actuator.setCategory(obj.get("category").toString());
 		door_actuator.setStatus(obj.get("state").toString());
 		

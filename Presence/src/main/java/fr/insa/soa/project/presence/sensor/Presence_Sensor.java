@@ -1,12 +1,18 @@
 package fr.insa.soa.project.presence.sensor;
 
 public class Presence_Sensor {
+	private String location;
 	private String category;
 	private String state;
-	private int floor;
-	private int room;
 	
 	public Presence_Sensor() {}
+	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 	
 	public String getCategory() {
 		return category;
@@ -15,21 +21,15 @@ public class Presence_Sensor {
 		this.category = category;
 	}
 
-	public String getState() {
+	public String getStatus() {
 		return state;
 	}
 
 	public void setStatus(String state) {
 		this.state = state;
 	}
-
-	
-	public void setFloor(int floor) {
-		this.floor = floor;
-	}
-	
-	public void setRoom(int room) {
-		this.room = room;
+	public String toString(){
+		return this.location + this.category + this.state;
 	}
 
 	

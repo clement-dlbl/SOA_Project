@@ -16,10 +16,6 @@ import obix.io.ObixDecoder;
 
 import fr.insa.soa.project.presence.sensor.Presence_Sensor;
 
-
-
-
-
 @RestController
 public class Presence_Sensor_Ressource {
 	
@@ -47,10 +43,9 @@ public class Presence_Sensor_Ressource {
 		/*using oBIX library*/
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
+		presence_sens.setLocation(obj.get("location").toString());
 		presence_sens.setCategory(obj.get("category").toString());
 		presence_sens.setStatus(obj.get("state").toString());
-		presence_sens.setFloor(numFloor);
-		presence_sens.setRoom(numRoom);
 		
 		return presence_sens;
 		

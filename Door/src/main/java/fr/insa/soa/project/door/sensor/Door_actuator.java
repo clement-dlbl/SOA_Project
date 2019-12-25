@@ -1,23 +1,31 @@
 package fr.insa.soa.project.door.sensor;
 
 public class Door_actuator {
+	private String location;
 	private String category;
 	private String state;
+	
+	
 	public Door_actuator() {
+		this.location ="";
+		this.category = "";
+		this.state = "";	
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+	
+	public void setCategory(String category) {
+		this.category = category;
 		
 	}
-	
-	public Door_actuator(String category, String state) {
-		this.category = category;
-		this.state = state;
-	}
-	
 	public String getCategory() {
 		return category;
 	}
-	/*public void setLocation(String category) {
-		this.category = category;
-	}*/
 	public String getStatus() {
 		return state;
 	}
@@ -26,11 +34,6 @@ public class Door_actuator {
 	}
 	
 	public String toString() {
-		return this.category + this.state;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-		
+		return this.location + this.category + this.state;
 	}
 }

@@ -44,7 +44,7 @@ public class Temperature_Ressource {
 	    double temp_round = Math.round(temp * 10.0) / 10.0;
 	    
 	    System.out.println("temp : "+ temp_round);
-		this.dataInstance.setContent(getDataRep("temperature_int", temp_round, "Celsus"));
+		this.dataInstance.setContent(getDataRep("Floor"+numFloor+"_Manager/ROOM"+numRoom, "temperature", temp_round, "Celsus"));
 		this.dataInstance.setContentInfo("application/obix:0");
 		
 		
@@ -77,6 +77,7 @@ public class Temperature_Ressource {
 		/*using oBIX library*/
 		Obj obj = ObixDecoder.fromString(obix_XML);
 		
+		temp_sens.setLocation(obj.get("location").toString());
 		temp_sens.setCategory(obj.get("category").toString());
 		temp_sens.setData(obj.get("data").toString());
 		temp_sens.setUnit(obj.get("unit").toString());
@@ -87,9 +88,10 @@ public class Temperature_Ressource {
 	
 	
 	
-	public String getDataRep(String category, Double string, String unit) {
+	public String getDataRep(String location, String category, Double string, String unit) {
 		// Create the obix object
 		Obj obj = new Obj();
+		obj.add(new Str("location", location));
 		obj.add(new Str("category", category));
 		obj.add(new Str("data", String.valueOf(string)));
 		obj.add(new Str("unit", unit));
