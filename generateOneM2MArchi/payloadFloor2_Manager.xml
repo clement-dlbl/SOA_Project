@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<m2m:ae xmlns:m2m = "http://www.onem2m.org/xml/protocols" rn = "Floor2_Manager">
-    <api> app-sensor 
-    </api>
-    <rr> false 
-    </rr>
-</m2m:ae>
