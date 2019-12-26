@@ -2,6 +2,7 @@ package fr.insa.soa.project.alarm.controller;
 
 import java.io.IOException;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import javax.xml.xpath.XPathExpressionException;
 
@@ -88,9 +89,17 @@ public class Alarm_Ressource {
 		alarm_sens.setLocation(obj.get("location").toString());
 		alarm_sens.setCategory(obj.get("category").toString());
 		alarm_sens.setStatus(obj.get("state").toString());
-		
 		return alarm_sens;
 	}
 	
-	
+	@GetMapping("/{numFloor}/{numRoom}/sensors/alarm/history")
+	public ArrayList<String> getHistory(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException, XPathExpressionException {
+		
+		Alarm_sensor alarm_sens = new Alarm_sensor();
+		for (int i = 0; i<alarm_sens.getHistoric().size(); i++){
+			System.out.print(alarm_sens.getHistoric().get(i).toString());
+		}
+		return alarm_sens.getHistoric();
+		
+	}
 }

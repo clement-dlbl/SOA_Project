@@ -53,7 +53,7 @@ public class UC2 {
 	    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/"+numFloor+"/"+numRoom+"/sensor/window", Window_Sensor.class);
 	
 	    		try {
-					res.add(uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus(), numFloor, numRoom));
+					res.add(uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus(), numFloor, numRoom, restTemplate));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

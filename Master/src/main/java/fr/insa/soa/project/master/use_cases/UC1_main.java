@@ -37,18 +37,21 @@ public class UC1_main {
 
 	      // Data attached to the request.
 	      
-	      HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
 	      
 	      
 	      
 		if (currentTime.getHour()>23 || currentTime.getHour()<7 && presence == true) {
 			System.out.println("IF");
 			message = "ON";
+			status = message;
+			HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
 			res =  restTemplate.postForObject(Config.getAlarm_Service() + "/"+floor+"/"+room+"/sensors/alarm/new", requestBody, String.class);
 			System.out.println("AlarmIF");
 		}else {
 			System.out.println("ELSE");
 			message= "OFF";
+			status = message;
+			HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
 			res = restTemplate.postForObject(Config.getAlarm_Service() + "/"+floor+"/"+room+"/sensors/alarm/new/", requestBody, String.class);
 			System.out.println("AlarmElse");
 		}

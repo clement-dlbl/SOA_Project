@@ -4,6 +4,12 @@ package fr.insa.soa.project.master.use_cases;
 import java.io.IOException;
 
 import org.eclipse.om2m.commons.resource.ContentInstance;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
+
+import fr.insa.soa.project.master.model.Config;
 import fr.insa.soa.project.master.model.Window_Sensor;
 
 import om2m.Client;
@@ -23,10 +29,16 @@ public class UC2_main {
 		this.id = id;
 	}
 
-	public String openWindow(Double d, Double temp, String window_status, int floor, int room) throws IOException {
+	public String openWindow(Double d, Double temp, String window_status, int floor, int room, RestTemplate restTemplate) throws IOException {
 		
 		Client client = new Client();
 		String message = "";
+		String res = "";
+		HttpHeaders headers = new HttpHeaders();
+	      headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	      headers.setContentType(MediaType.APPLICATION_JSON);
+
+	      // Data attached to the request.
 		
 		System.out.println("Aeration - Open Window");
 		
@@ -34,23 +46,31 @@ public class UC2_main {
 		if (d > temp && window_status == "CLOSE") {
 			message = "Window open";
 
-			
-			ContentInstance dataInstance = new ContentInstance();
+			String status = "OPEN";
+			HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
+			/*ContentInstance dataInstance = new ContentInstance();
 			dataInstance.setContent(Window_Sensor.getDataRep("Floor"+floor+"_Manager/ROOM"+room,"Window", "OPEN"));
 			dataInstance.setContentInfo("application/obix:0");
 			
 			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
 			System.out.println("[Master : if : ] Window Opened");
-			System.out.println(res);
+			System.out.println(res);*/
+			res =  restTemplate.postForObject(Config.getWindow_Service() + "/"+floor+"/"+room+"/sensors/alarm/new", requestBody, String.class);
+
+			
 		}else {
-			message= "Window closed";
+			message= "Window close";
+			String status = "CLOSED";
 			
 			
-			ContentInstance dataInstance = new ContentInstance();
+			/*ContentInstance dataInstance = new ContentInstance();
 			dataInstance.setContent(Window_Sensor.getDataRep("Floor"+floor+"_Manager/ROOM"+room, "Window", "CLOSE"));
 			dataInstance.setContentInfo("application/obix:0");
 			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
-			System.out.println("[Master : else : ] "+res);
+			System.out.println("[Master : else : ] "+res);*/
+			HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
+			res =  restTemplate.postForObject(Config.getWindow_Service() + "/"+floor+"/"+room+"/sensors/alarm/new", requestBody, String.class);
+
 		}
 		System.out.println(message);
 		
