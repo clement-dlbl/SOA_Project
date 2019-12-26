@@ -1,14 +1,18 @@
 package fr.insa.soa.project.window.sensor;
 
+import java.util.ArrayList;
+
 public class Window_Sensor {
 	private String location;
 	private String category;
 	private String status;
+	private ArrayList<String> dataHistory;
 	
 	public Window_Sensor() {
 		this.location="";
 		this.category = "";
 		this.status = "";
+		this.dataHistory = new ArrayList<String>();
 		
 	}
 	public void setLocation(String location) {
@@ -29,6 +33,12 @@ public class Window_Sensor {
 	}
 	public String getStatus() {
 		return status;
+	}
+	public void adddatatoHistory(String value) {
+		this.dataHistory.add(value);
+	}
+	public ArrayList<String> getHistoric(){
+		return this.dataHistory;
 	}
 	
 	

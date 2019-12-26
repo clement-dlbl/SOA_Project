@@ -16,6 +16,8 @@ import om2m.Client;
 import om2m.Response;
 import om2m_mapper.Mapper;
 import om2m_mapper.MapperInterface;
+import java.time.LocalTime;
+
 
 
 import fr.insa.soa.project.temperature.sensor.Temperature_sensor;
@@ -57,6 +59,7 @@ public class Temperature_Ressource {
 	@GetMapping("/{numFloor}/{numRoom}/sensors/temperature/inside")
 	Temperature_sensor retrieve_TempInt(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException{
 		Temperature_sensor temp_sens = new Temperature_sensor();
+		LocalTime currentTime = LocalTime.now();
 
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Inside_Temp/la", "admin:admin");
 		
@@ -81,6 +84,7 @@ public class Temperature_Ressource {
 		temp_sens.setCategory(obj.get("category").toString());
 		temp_sens.setData(obj.get("data").toString());
 		temp_sens.setUnit(obj.get("unit").toString());
+		temp_sens.adddatatoHistory(currentTime.toString() + temp_sens.toString());
 		
 		return temp_sens;
 	}

@@ -1,6 +1,7 @@
 package fr.insa.soa.project.window.controller;
 
 import java.io.IOException;
+import java.time.LocalTime;
 
 import javax.xml.xpath.XPathExpressionException;
 
@@ -26,7 +27,8 @@ public class Window_Sensor_Ressource {
 	public Window_Sensor retrieve_OM2M(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException, XPathExpressionException {
 		Client client = new Client();
 		Window_Sensor window_sens = new Window_Sensor();
-		
+		LocalTime currentTime = LocalTime.now();
+
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Window/la", "admin:admin");
 		
 		// System.out.println(resp.getRepresentation());
@@ -49,6 +51,7 @@ public class Window_Sensor_Ressource {
 		window_sens.setLocation(obj.get("location").toString());
 		window_sens.setCategory(obj.get("category").toString());
 		window_sens.setStatus(obj.get("state").toString());
+		window_sens.adddatatoHistory(currentTime.toString() + window_sens.toString());
 		
 		return window_sens;
 		

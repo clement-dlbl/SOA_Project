@@ -4,18 +4,18 @@ package fr.insa.soa.project.master.use_cases;
 import java.io.IOException;
 import java.time.LocalTime;
 
-import org.eclipse.om2m.commons.resource.ContentInstance;
-import fr.insa.soa.project.master.model.Alarm;
 
-import om2m.Client;
-import om2m.Response;
-import om2m_mapper.Mapper;
-import om2m_mapper.MapperInterface;
+import org.json.JSONException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
+
+
+import fr.insa.soa.project.master.model.Config;
 
 public class UC1_main {
-	private static final String ORIGINATOR = "admin:admin";
 	private int id = 1;
-	private MapperInterface mapper = new Mapper();
 	
 	public int getId() {
 		return id;
@@ -24,39 +24,37 @@ public class UC1_main {
 		this.id = id;
 	}
 
-	public String triggerAlarm(boolean presence, String status, int room, int floor) throws IOException {
+	public String triggerAlarm(boolean presence, String status, int room, int floor, RestTemplate restTemplate) throws IOException, JSONException {
 		LocalTime currentTime = LocalTime.now();
-		Client client = new Client();
 		String message = "";
+		String res = "";
 		
-		System.out.println("Trigger Alarm");
+		System.out.println("Alarm");
 		
-		
+		 HttpHeaders headers = new HttpHeaders();
+	      headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	      headers.setContentType(MediaType.APPLICATION_JSON);
+
+	      // Data attached to the request.
+	      
+	      HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
+	      
+	      
+	      
 		if (currentTime.getHour()>23 || currentTime.getHour()<7 && presence == true) {
-			message = "Trigger Alarm";
-
-			ContentInstance dataInstance = new ContentInstance();
-			dataInstance.setContent(Alarm.getDataRep("Floor"+floor+"_Manager/ROOM"+room,"Alarm", "ON"));
-			dataInstance.setContentInfo("application/obix:0");
-			
-			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Alarm", mapper.marshal(dataInstance), ORIGINATOR, "4");
-			System.out.println("[Master : if : ] Alarm triggered");
-			System.out.println(res);
+			System.out.println("IF");
+			message = "ON";
+			res =  restTemplate.postForObject(Config.getAlarm_Service() + "/"+floor+"/"+room+"/sensors/alarm/new", requestBody, String.class);
+			System.out.println("AlarmIF");
 		}else {
-			message= "Alarm not triggered";
-
-			
-			ContentInstance dataInstance = new ContentInstance();
-			dataInstance.setContent(Alarm.getDataRep("Floor"+floor+"_Manager/ROOM"+room, "Alarm", "OFF"));
-			dataInstance.setContentInfo("application/obix:0");
-			
-			Response res = client.create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Alarm", mapper.marshal(dataInstance), ORIGINATOR, "4");
-			System.out.println("[Master : if : ] Alarm triggered");
-			System.out.println(res);
+			System.out.println("ELSE");
+			message= "OFF";
+			res = restTemplate.postForObject(Config.getAlarm_Service() + "/"+floor+"/"+room+"/sensors/alarm/new/", requestBody, String.class);
+			System.out.println("AlarmElse");
 		}
 		
 		System.out.println("It is : " + currentTime);
-		return currentTime.toString()+" : "+message;
+		return currentTime.toString() +","+ message;
 	}
 	
 }

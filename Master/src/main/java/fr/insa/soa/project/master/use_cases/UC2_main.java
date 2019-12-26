@@ -32,7 +32,7 @@ public class UC2_main {
 		
 		
 		if (d > temp && window_status == "CLOSE") {
-			message = "Open Window";
+			message = "Window open";
 
 			
 			ContentInstance dataInstance = new ContentInstance();
@@ -43,7 +43,7 @@ public class UC2_main {
 			System.out.println("[Master : if : ] Window Opened");
 			System.out.println(res);
 		}else {
-			message= "Window not opened";
+			message= "Window closed";
 			
 			
 			ContentInstance dataInstance = new ContentInstance();
@@ -53,7 +53,8 @@ public class UC2_main {
 			System.out.println("[Master : else : ] "+res);
 		}
 		System.out.println(message);
-		return message;
+		
+		return "TempOut:"+temp+", TempIN:"+d+", "+message;
 		
 	}
 	

@@ -2,8 +2,8 @@ package fr.insa.soa.project.master.ressources;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
+import org.json.JSONException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ import fr.insa.soa.project.master.use_cases.UC1_main;
 public class UC1 {
 	
 	@GetMapping("/Use_Case_1/{numFloor}/{numRoom}")
-	public List<String> getAlarm(@PathVariable int numFloor, @PathVariable int numRoom) {
+	public ArrayList<String> getAlarm(@PathVariable int numFloor, @PathVariable int numRoom) throws JSONException {
 		//Simulate data base
 		UC1_main uc1_main = new UC1_main();
 		
@@ -27,18 +27,20 @@ public class UC1 {
 		
 		Presence_Sensor res_presence = restTemplate.getForObject(Config.getPresence_Service() + "/"+numFloor+"/"+numRoom+"/sensors/presence", Presence_Sensor.class);
 		Alarm res_alarm = restTemplate.getForObject(Config.getAlarm_Service() + "/"+numFloor+"/"+numRoom+"/sensors/alarm", Alarm.class);
+		ArrayList<String> res = new ArrayList<String>();
+		res.add("presence : "+res_presence.isPresence());
+		res.add("oldState : "+res_alarm.getStatus());
 		
-		List<String> res = new ArrayList<String>();
-		res.add("Presence status : " + res_presence.isPresence());
-		res.add("Alarm status : " + res_alarm.getStatus());
-		System.out.println("before Triggering Alarm");
 		try {
-			res.add("Is alarm launched ?" + uc1_main.triggerAlarm(res_presence.isPresence(), res_alarm.getStatus(), numRoom, numFloor));
+			res.add("state :"+uc1_main.triggerAlarm(res_presence.isPresence(),res_alarm.getStatus(), numRoom, numFloor, restTemplate));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
-		
 		return res;
+		
 	}
 	
 }

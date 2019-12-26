@@ -1,12 +1,16 @@
 package fr.insa.soa.project.temperature.sensor;
 
+import java.util.ArrayList;
+
 public class Temperature_sensor {
+	private ArrayList<String> dataHistory;
 	private String location;
 	private String category;
 	private String data;
 	private String unit;
 	
 	public Temperature_sensor() {
+		this.dataHistory = new ArrayList<String>();
 		this.location = "";
 		this.category = "";
 		this.data = "";
@@ -40,7 +44,12 @@ public class Temperature_sensor {
 	public String getUnit(){
 		return unit;
 	}
-	
+	public void adddatatoHistory(String value){
+		this.dataHistory.add(value);
+	}
+	public ArrayList<String> getHistoric(){
+		return this.dataHistory;
+	}
 	
 	public String toString() {
 		return this.location + this.category + this.data + this.unit;
