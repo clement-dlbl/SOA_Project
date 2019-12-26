@@ -30,7 +30,7 @@ public class Temperature_Ressource {
 	
 	private static final String ORIGINATOR = "admin:admin";
 	private static final int Min = 0;
-	private static final int Max = 50;
+	private static final int Max = 20;
 	private Client client = new Client();
 	private ContentInstance dataInstance = new ContentInstance();
 	private MapperInterface mapper = new Mapper();

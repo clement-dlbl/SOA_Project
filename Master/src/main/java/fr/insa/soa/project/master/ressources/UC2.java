@@ -24,13 +24,17 @@ public class UC2 {
 	public HashMap<String, String> getTemperature(@PathVariable int numFloor, @PathVariable int numRoom) {
 		//Simulate data base
 		UC2_main uc2_main = new UC2_main();
-		System.out.println("test");
 		//Instanciate RestTemplate for Rest calls
 		RestTemplate restTemplate = new RestTemplate();
-		HashMap<String, String> res = new HashMap<String, String>();		
+		HashMap<String, String> res = new HashMap<String, String>();
 		
 		try {
-			//////
+			//System.out.println(resIntempLast.toString());
+
+			//Generate an Inside Temp  http://localhost:8082/2/200/sensors/temperature/inside/new
+			Double val = restTemplate.getForObject(Config.getTemperature_Service()+"/"+numFloor+"/"+numRoom+"/sensors/temperature/inside/new", Double.class);
+			System.out.println(val);
+		    //////
 			//Outside_Temp res_out_temp;
 			//////
 			final String uri = "https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=28-station-meteo-carmes&lang=fr&sort=heure_de_paris&fbclid=IwAR3mFob-pcISDNpt1-nnUAtJs8IEZmnsnu8VbkjXwqK_yzAN74_diGnPzKc";
@@ -38,6 +42,7 @@ public class UC2 {
 		
 		    //Retreive data from Toulouse Métropole DB
 		    String result = restTemplate.getForObject(uri, String.class);
+		    
 		    ///Parsing of file and get Temp object on json file
 		    JSONObject obj = new JSONObject(result);
 	        JSONArray arr = obj.getJSONArray("records");
@@ -49,14 +54,14 @@ public class UC2 {
             res.put("dateUTC", instant.toString());
             
           
-            //retreive inside temp
-    		Inside_Temp resIntemp = restTemplate.getForObject(Config.getTemperature_Service() + "/"+numFloor+"/"+numRoom+"/sensors/temperature/inside", Inside_Temp.class);
+            //retreive  last  inside temp
+            Inside_Temp resIntempLast = restTemplate.getForObject(Config.getTemperature_Service()+"/"+numFloor+"/"+numRoom+"/sensors/temperature/inside", Inside_Temp.class);
     		//retreive Windows 
-    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/"+numFloor+"/"+numRoom+"/sensor/window", Window_Sensor.class);
-    		res.put("tempIN", String.valueOf(resIntemp.getData()));
+    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service()+"/"+numFloor+"/"+numRoom+"/sensor/window", Window_Sensor.class);
+    		res.put("tempIN", String.valueOf(resIntempLast.getData()));
     		res.put("tempOUT", String.valueOf(temp));
     		try {
-				res.put("state", uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus(), numFloor, numRoom, restTemplate));
+				res.put("state", uc2_main.openWindow(resIntempLast.getData(), temp, res_window.getStatus(), numFloor, numRoom, restTemplate));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
