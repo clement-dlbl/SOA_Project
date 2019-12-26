@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.eclipse.om2m.commons.resource.ContentInstance;
-//import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,8 +41,6 @@ public class Window_Sensor_Ressource {
 		Client client = new Client();
 		Response res = client .create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
 		window_sens.adddatatoHistory(currentTime.toString()+","+requestUserDetails);
-		//System.out.println(res);
-		//System.out.println(currentTime.toString()+","+requestUserDetails);
 		return currentTime.toString()+","+requestUserDetails;
 	}	
 	

@@ -39,7 +39,7 @@ public class UC2_main {
 		}
 		System.out.println(res);
 		
-		return "TempOut:"+temp+", TempIN:"+d+", "+status;
+		return status;
 		
 	}
 	

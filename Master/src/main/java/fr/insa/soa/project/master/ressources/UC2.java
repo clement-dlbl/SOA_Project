@@ -1,8 +1,8 @@
 package fr.insa.soa.project.master.ressources;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,14 +21,13 @@ import fr.insa.soa.project.master.model.Inside_Temp;
 public class UC2 {
 	
 	@GetMapping("/Use_Case_2/{numFloor}/{numRoom}")
-	public List<String> getTemperature(@PathVariable int numFloor, @PathVariable int numRoom) {
+	public HashMap<String, String> getTemperature(@PathVariable int numFloor, @PathVariable int numRoom) {
 		//Simulate data base
 		UC2_main uc2_main = new UC2_main();
 		System.out.println("test");
 		//Instanciate RestTemplate for Rest calls
 		RestTemplate restTemplate = new RestTemplate();
-		List<String> res = new ArrayList<String>();
-		
+		HashMap<String, String> res = new HashMap<String, String>();		
 		
 		try {
 			//////
@@ -42,22 +41,25 @@ public class UC2 {
 		    ///Parsing of file and get Temp object on json file
 		    JSONObject obj = new JSONObject(result);
 	        JSONArray arr = obj.getJSONArray("records");
-	        
-	        for (int i = 0; i < arr.length(); i++) {
-	            Double temp = arr.getJSONObject(i).getJSONObject("fields").getDouble("temperature_en_degre_c");	
-	            
-	          
-	            //retreive inside temp
-	    		Inside_Temp resIntemp = restTemplate.getForObject(Config.getTemperature_Service() + "/"+numFloor+"/"+numRoom+"/sensors/temperature/inside", Inside_Temp.class);
-	    		//retreive Windows 
-	    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/"+numFloor+"/"+numRoom+"/sensor/window", Window_Sensor.class);
-	
-	    		try {
-					res.add(uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus(), numFloor, numRoom, restTemplate));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-	        }
+            Double temp = arr.getJSONObject(0).getJSONObject("fields").getDouble("temperature_en_degre_c");	
+            String date = arr.getJSONObject(0).getJSONObject("fields").getString("heure_utc");
+            Instant instant = Instant.now();
+            System.out.println(date + instant.toString());
+            res.put("dateSample", date);
+            res.put("dateUTC", instant.toString());
+            
+          
+            //retreive inside temp
+    		Inside_Temp resIntemp = restTemplate.getForObject(Config.getTemperature_Service() + "/"+numFloor+"/"+numRoom+"/sensors/temperature/inside", Inside_Temp.class);
+    		//retreive Windows 
+    		Window_Sensor res_window = restTemplate.getForObject(Config.getWindow_Service() + "/"+numFloor+"/"+numRoom+"/sensor/window", Window_Sensor.class);
+    		res.put("tempIN", String.valueOf(resIntemp.getData()));
+    		res.put("tempOUT", String.valueOf(temp));
+    		try {
+				res.put("state", uc2_main.openWindow(resIntemp.getData(), temp, res_window.getStatus(), numFloor, numRoom, restTemplate));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} catch (JSONException e1) {
 			e1.printStackTrace();
 		}
