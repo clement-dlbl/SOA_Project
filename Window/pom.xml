@@ -67,6 +67,14 @@
 		</dependency>
 		
 		<dependency>
+		    <groupId>om2m_mapper</groupId>
+		    <artifactId>om2m_mapper</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/om2m_mapper.jar</systemPath>
+		</dependency>
+		
+		<dependency>
 		    <groupId>obix</groupId>
 		    <artifactId>obix</artifactId>
 		    <version>1.0</version>

@@ -1,9 +1,6 @@
 package fr.insa.soa.project.presence.ressources;
 
 import java.io.IOException;
-import java.time.LocalTime;
-
-import javax.xml.xpath.XPathExpressionException;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +21,6 @@ public class Presence_Sensor_Ressource {
 	public Presence_Sensor check_Window_Open(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException {
 		Presence_Sensor presence_sens = new Presence_Sensor();
 		Client client = new Client();
-		LocalTime currentTime = LocalTime.now();
 		
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Presence/la", "admin:admin");
 		
@@ -48,7 +44,6 @@ public class Presence_Sensor_Ressource {
 		presence_sens.setLocation(obj.get("location").toString());
 		presence_sens.setCategory(obj.get("category").toString());
 		presence_sens.setStatus(obj.get("state").toString());
-		presence_sens.adddatatoHistory(currentTime.toString() + presence_sens.toString());
 		
 		return presence_sens;
 		

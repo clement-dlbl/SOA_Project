@@ -26,7 +26,7 @@ public class UC1_main {
 
 	public String triggerAlarm(boolean presence, String status, int room, int floor, RestTemplate restTemplate) throws IOException, JSONException {
 		LocalTime currentTime = LocalTime.now();
-		String message = "";
+		String status1 = "";
 		String res = "";
 		
 		System.out.println("Alarm");
@@ -36,28 +36,23 @@ public class UC1_main {
 	      headers.setContentType(MediaType.APPLICATION_JSON);
 
 	      // Data attached to the request.
-	      
-	      
-	      
-	      
+	      System.out.println("It is : " + currentTime);
 		if (currentTime.getHour()>23 || currentTime.getHour()<7 && presence == true) {
 			System.out.println("IF");
-			message = "ON";
-			status = message;
-			HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
+			status1 = "ON";
+			HttpEntity<String> requestBody = new HttpEntity<>(status1, headers);
 			res =  restTemplate.postForObject(Config.getAlarm_Service() + "/"+floor+"/"+room+"/sensors/alarm/new", requestBody, String.class);
 			System.out.println("AlarmIF");
 		}else {
 			System.out.println("ELSE");
-			message= "OFF";
-			status = message;
-			HttpEntity<String> requestBody = new HttpEntity<>(status, headers);
-			res = restTemplate.postForObject(Config.getAlarm_Service() + "/"+floor+"/"+room+"/sensors/alarm/new/", requestBody, String.class);
-			System.out.println("AlarmElse");
+			status1= "OFF";
+			HttpEntity<String> requestBody = new HttpEntity<>(status1, headers);
+			res = restTemplate.postForObject(Config.getAlarm_Service() + "/"+floor+"/"+room+"/sensors/alarm/new", requestBody, String.class);
+			System.out.println("AlarmElse:" +res);
 		}
 		
-		System.out.println("It is : " + currentTime);
-		return currentTime.toString() +","+ message;
+		
+		return status1;
 	}
 	
 }

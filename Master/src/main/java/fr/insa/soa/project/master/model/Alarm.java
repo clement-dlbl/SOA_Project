@@ -1,32 +1,46 @@
 package fr.insa.soa.project.master.model;
 
+import java.util.ArrayList;
+
 public class Alarm {
 	private String location;
+	private String category;
 	private String status;
+	private ArrayList<String> dataHistory;
 	
 	public Alarm() {
+		this.location ="";
+		this.category = "";
+		this.status = "";
+		this.dataHistory = new ArrayList<String>();
+	}
+	public void setCategory(String category) {
+		this.category = category;
 		
 	}
-	
-	public Alarm(String location, String status) {
+	public void setLocation(String location) {
 		this.location = location;
-		this.status = status;
 	}
 	
-	public String getLocation() {
-		return location;
+	public String getCategory() {
+		return category;
 	}
-	public void setLocation(int floor, int room) {
-		this.location = "Floor:"+floor+"/Room"+room;
-	}
+	
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	public String toString() {
-		return this.location + this.status;
+	public void adddatatoHistory(String value){
+		this.dataHistory.add(value);
 	}
+	public ArrayList<String> getHistoric(){
+		return this.dataHistory;
+	}
+	public String toString() {
+		return this.location + this.category + this.status;
+	}
+
+	
 }

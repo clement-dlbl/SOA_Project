@@ -27,7 +27,7 @@ import obix.io.ObixEncoder;
 
 @RestController
 public class Alarm_Ressource {
-	@PostMapping(path ="/{floor}/{room}/sensors/alarm/new/", consumes = "application/json", produces = "application/json")
+	@PostMapping(path ="/{floor}/{room}/sensors/alarm/new", consumes = "application/json", produces = "application/json")
 	public String pushto_OM2M(@RequestBody String requestUserDetails, @PathVariable int floor, @PathVariable int room) throws IOException{
 		System.out.println("Sevice Alarm");
 		Alarm_sensor alarm_sens = new Alarm_sensor();
@@ -41,7 +41,7 @@ public class Alarm_Ressource {
 		
 		Client client = new Client();
 		Response res = client .create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Alarm", mapper.marshal(dataInstance), ORIGINATOR, "4");
-		alarm_sens.adddatatoHistory(currentTime.toString()+","+requestUserDetails);
+		//alarm_sens.adddatatoHistory(currentTime.toString()+","+requestUserDetails);
 		System.out.println(res);
 		System.out.println(currentTime.toString()+","+requestUserDetails);
 		return currentTime.toString()+","+requestUserDetails;

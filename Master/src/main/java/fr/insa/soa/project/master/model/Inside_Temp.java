@@ -1,46 +1,63 @@
 package fr.insa.soa.project.master.model;
 
+import java.util.ArrayList;
+
 public class Inside_Temp {
+	
+	
+	
+	private ArrayList<String> dataHistory;
 	private String location;
 	private String category;
 	private Double data;
-	private String unit; 
-	
-	
+	private String unit;
+
 	public Inside_Temp() {
 		
-		this.location ="";
+		this.dataHistory = new ArrayList<String>();
+		this.location = "";
 		this.category = "";
 		this.data = 0.;
 		this.unit = "";
 	}
 	
-	public String getLocation() {
-		return location;
-	}
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public String getLocation(){
+		return location;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+		
 	}
 	public String getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public Double getData() {
-		return data;
-	}
 	public void setData(Double data) {
 		this.data = data;
 	}
-	public String getUnit() {
+	public Double getData() {
+		return this.data;
+	}
+	
+	public void setUnit(String unit) {
+		this.unit =unit;
+		
+	}
+	public String getUnit(){
 		return unit;
 	}
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void adddatatoHistory(String value){
+		this.dataHistory.add(value);
+	}
+	public ArrayList<String> getHistoric(){
+		return this.dataHistory;
 	}
 	
 	public String toString() {
-		return this.category + this.data + this.unit;
+		return this.location + this.category + this.data + this.unit;
 	}
+
+	
 }

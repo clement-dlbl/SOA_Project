@@ -6,13 +6,12 @@ public class Alarm_sensor {
 	private String location;
 	private String category;
 	private String status;
-	private ArrayList<String> dataHistory;
+	private static ArrayList<String> dataHistory;
 	
 	public Alarm_sensor() {
 		this.location ="";
 		this.category = "";
 		this.status = "";
-		this.dataHistory = new ArrayList<String>();
 	}
 	public void setCategory(String category) {
 		this.category = category;
@@ -33,10 +32,10 @@ public class Alarm_sensor {
 		this.status = status;
 	}
 	public void adddatatoHistory(String value){
-		this.dataHistory.add(value);
+		dataHistory.add(value);
 	}
 	public ArrayList<String> getHistoric(){
-		return this.dataHistory;
+		return dataHistory;
 	}
 	public String toString() {
 		return this.location + this.category + this.status;

@@ -1,44 +1,44 @@
 package fr.insa.soa.project.master.model;
 
-import obix.Obj;
-import obix.Str;
-import obix.io.ObixEncoder;
+import java.util.ArrayList;
 
 public class Window_Sensor {
+	private String location;
 	private String category;
 	private String status;
+	private ArrayList<String> dataHistory;
 	
 	public Window_Sensor() {
+		this.location="";
+		this.category = "";
+		this.status = "";
+		this.dataHistory = new ArrayList<String>();
 		
 	}
-	
-	public Window_Sensor(String category, String status) {
-		this.category = category;
-		this.status = status;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-	
-	public String getCategory() {
-		return category;
+	public String getLocation() {
+		return location;
 	}
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getStatus() {
-		return status;
+	public String getCategory() {
+		return category;
 	}
+	
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void adddatatoHistory(String value) {
+		this.dataHistory.add(value);
+	}
+	public ArrayList<String> getHistoric(){
+		return this.dataHistory;
+	}
 	
-	//Create obix object to insert in oneM2M tree
-	public static String getDataRep(String location, String category, String status) {
-		// Create the obix object
-		Obj obj = new Obj();
-		obj.add(new Str("location", location));
-		obj.add(new Str("category", category));
-		obj.add(new Str("state", status));
-
-		return ObixEncoder.toString(obj);
-
-	}	
 }

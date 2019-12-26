@@ -30,8 +30,8 @@ public class Temperature_sensor {
 	public String getCategory() {
 		return category;
 	}
-	public void setData(String data) {
-		this.data = data;
+	public void setData(String string) {
+		this.data = string;
 	}
 	public String getData() {
 		return this.data;
