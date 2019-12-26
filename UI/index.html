@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>SOA Manage Building</title>
+    <link rel="stylesheet" type="text/css" href="font.css">
+    <script type="text/javascript" src="my.js"></script>
+</head>
+<body>
+<div class= "title">
+    <img src="img/logoINSA.png" alt="INSA TOULOUSE" id="logoINSA">
+    <img src="img/LogoISS.png" alt="ISS-SOA" id="logoISS">
+    <h1>Welcome on Clement, Mathilde, Vincent SOA Home</h1>
+</div>
+
+
+<div class="menuROOM">
+    <table id="menuTable">
+        <tr>   
+          <th>
+            <select id="floor-choice" onchange="manageMenuFloor(this.value)">
+                <option selected default value="base">Please Select</option>
+                <option value="1">Floor1</option>
+                <option value="2">Floor2</option>
+            </select>
+          </th>
+          <th>
+            <select id="room-choice" onchange="manageMenuRoom(this.value)">
+                <option>Please choose from above</option>
+            </select>
+          </th>
+        </tr>
+        </table>
+</div>
+<table class="informationTable">
+  <tr>
+    <th>
+      <div id="informationFloor"></div>
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <div id="informationRoom"></div>
+    </td>
+  </tr>
+</table>
+<div id="sensorActuator">
+</div>
+
+
+
+
+
+</body>
+</html> 
