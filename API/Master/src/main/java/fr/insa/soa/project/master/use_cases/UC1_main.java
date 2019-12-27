@@ -32,8 +32,8 @@ public class UC1_main {
 		System.out.println("Alarm");
 		
 		 HttpHeaders headers = new HttpHeaders();
-	      headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
-	      headers.setContentType(MediaType.APPLICATION_JSON);
+	     headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	     headers.setContentType(MediaType.APPLICATION_JSON);
 
 	      // Data attached to the request.
 	      System.out.println("It is : " + currentTime);

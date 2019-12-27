@@ -50,6 +50,13 @@
 		    <version>2.6</version>
 		</dependency>
 		
+		<!-- org.json   -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20190722</version>
+		</dependency>
+		
 		<dependency>
 		    <groupId>om2m</groupId>
 		    <artifactId>om2m</artifactId>
@@ -74,6 +81,15 @@
 		    <systemPath>${project.basedir}/libs/obix.jar</systemPath>
 		</dependency>
 		
+		
+		<!-- Historic -->
+		<dependency>
+		    <groupId>Historic_model</groupId>
+		    <artifactId>Historic_model</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/libs/services/Historic_model.jar</systemPath>
+		</dependency>
 	</dependencies>
 	
 	<build>

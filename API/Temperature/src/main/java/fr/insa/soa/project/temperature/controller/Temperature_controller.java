@@ -2,11 +2,16 @@ package fr.insa.soa.project.temperature.controller;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.eclipse.om2m.commons.resource.ContentInstance;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import fr.insa.soa.project.temperature.model.Temperature_model;
 import obix.Obj;
@@ -17,13 +22,12 @@ import om2m.Client;
 import om2m.Response;
 import om2m_mapper.Mapper;
 import om2m_mapper.MapperInterface;
-import java.time.LocalTime;
 
 
 
 
 @RestController
-public class Temperature_Ressource {
+public class Temperature_controller {
 	
 	private static final String ORIGINATOR = "admin:admin";
 	private static final int Min = 0;
@@ -50,13 +54,30 @@ public class Temperature_Ressource {
 		Response res = this.client.create("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Inside_Temp", this.mapper.marshal(dataInstance), ORIGINATOR, "4");
 		System.out.println("[Temp : ] Temp  created in oneM2M");
 		System.out.println("[Temp : ] "+res);
+		
+		final String HISTORICURL = "http://localhost:8000";
+		HttpHeaders headers = new HttpHeaders();
+		RestTemplate restTemplate = new RestTemplate();
+		
+		
+	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	    
+	    
+
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		json.put("source", "temperatureIn");
+		json.put("status", String.valueOf(temp_round));
+		
+		HttpEntity<HashMap<String, Object>> requestBody = new HttpEntity<>(json , headers);
+		Object authorizationResponse = restTemplate.postForObject(HISTORICURL+"/historic/new", requestBody, Object.class);
+		System.out.println("Window test : "+(String) authorizationResponse);
 		return temp_round;
 	}
 	
 	@GetMapping("/{numFloor}/{numRoom}/sensors/temperature/inside")
 	Temperature_model retrieve_TempInt(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException{
 		Temperature_model temp_sens = new Temperature_model();
-		LocalTime currentTime = LocalTime.now();
 
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Inside_Temp/la", "admin:admin");
 		
@@ -81,7 +102,6 @@ public class Temperature_Ressource {
 		temp_sens.setCategory(obj.get("category").toString());
 		temp_sens.setData(obj.get("data").toString());
 		temp_sens.setUnit(obj.get("unit").toString());
-		temp_sens.adddatatoHistory(currentTime.toString() + temp_sens.toString());
 		
 		return temp_sens;
 	}

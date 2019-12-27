@@ -19,7 +19,7 @@ import obix.io.ObixDecoder;
 
 
 @RestController
-public class Door_Ressource {
+public class Door_controller {
 	
 	
 	@GetMapping("/rooms/{name}/sensors/door")
@@ -50,8 +50,6 @@ public class Door_Ressource {
 		door_actuator.setLocation(obj.get("location").toString());
 		door_actuator.setCategory(obj.get("category").toString());
 		door_actuator.setStatus(obj.get("state").toString());
-		door_actuator.adddatatoHistory(currentTime .toString() + door_actuator.toString());
-		
 		return door_actuator;
 	}
 	

@@ -2,15 +2,22 @@ package fr.insa.soa.project.window.controller;
 
 import java.io.IOException;
 import java.time.LocalTime;
+import java.util.HashMap;
 
 import javax.xml.xpath.XPathExpressionException;
 
 import org.eclipse.om2m.commons.resource.ContentInstance;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import fr.insa.soa.project.window.model.Window_model;
 import om2m.Client;
@@ -24,23 +31,41 @@ import obix.io.ObixEncoder;
 
 
 @RestController
-public class Window_Sensor_Ressource {
+public class Window_controller {
 	
 	@PostMapping(path ="/{floor}/{room}/sensors/window/new/", consumes = "application/json", produces = "application/json")
-	public String pushto_OM2M(@RequestBody String requestUserDetails, @PathVariable int floor, @PathVariable int room) throws IOException{
+	public String pushto_OM2M(@RequestBody String requestUserDetails, @PathVariable int floor, @PathVariable int room) throws IOException, JSONException{
 		System.out.println("Sevice Window");
-		Window_model window_sens = new Window_model();
 		ContentInstance dataInstance = new ContentInstance();
 		MapperInterface mapper = new Mapper();
 		final String ORIGINATOR = "admin:admin";
 		LocalTime currentTime = LocalTime.now();
+		final String HISTORICURL = "http://localhost:8000";
+		HttpHeaders headers = new HttpHeaders();
+		RestTemplate restTemplate = new RestTemplate();
 		
 		dataInstance.setContent(getDataRep("Floor"+floor+"_Manager/ROOM"+room,"Window", requestUserDetails));
 		dataInstance.setContentInfo("application/obix:0");
 		
 		Client client = new Client();
 		Response res = client .create("http://localhost:8080/~/in-cse/in-name/Floor"+floor+"_Manager/ROOM"+room+"/Window", mapper.marshal(dataInstance), ORIGINATOR, "4");
-		window_sens.adddatatoHistory(currentTime.toString()+","+requestUserDetails);
+		System.out.println(res);
+		
+		
+		
+		//Add new window status in historic
+	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	    
+	    
+
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		json.put("source", "window");
+		json.put("status", requestUserDetails);
+		
+		HttpEntity<HashMap<String, Object>> requestBody = new HttpEntity<>(json , headers);
+		Object authorizationResponse = restTemplate.postForObject(HISTORICURL+"/historic/new", requestBody, Object.class);
+		System.out.println("Alarm test : "+(String) authorizationResponse);
 		return currentTime.toString()+","+requestUserDetails;
 	}	
 	
@@ -62,7 +87,6 @@ public class Window_Sensor_Ressource {
 	public Window_model retrieve_OM2M(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException, XPathExpressionException {
 		Client client = new Client();
 		Window_model window_sens = new Window_model();
-		LocalTime currentTime = LocalTime.now();
 
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Window/la", "admin:admin");
 		
@@ -86,7 +110,6 @@ public class Window_Sensor_Ressource {
 		window_sens.setLocation(obj.get("location").toString());
 		window_sens.setCategory(obj.get("category").toString());
 		window_sens.setStatus(obj.get("state").toString());
-		window_sens.adddatatoHistory(currentTime.toString() + window_sens.toString());
 		
 		return window_sens;
 		

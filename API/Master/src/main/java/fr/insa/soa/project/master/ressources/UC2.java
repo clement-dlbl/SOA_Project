@@ -7,6 +7,9 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +30,10 @@ public class UC2 {
 		//Instanciate RestTemplate for Rest calls
 		RestTemplate restTemplate = new RestTemplate();
 		HashMap<String, String> res = new HashMap<String, String>();
+		
+		final String HISTORICURL = "http://localhost:8000";
+		HttpHeaders headers = new HttpHeaders();
+		
 		
 		try {
 			//System.out.println(resIntempLast.toString());
@@ -52,6 +59,22 @@ public class UC2 {
             System.out.println(date + instant.toString());
             res.put("dateSample", date);
             res.put("dateUTC", instant.toString());
+    		
+            //Add to historic
+    		
+    		
+    	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+    	    headers.setContentType(MediaType.APPLICATION_JSON);
+    	    
+    	    
+
+    		HashMap<String, Object> json = new HashMap<String, Object>();
+    		json.put("source", "tempeartureOut");
+    		json.put("status", String.valueOf(temp));
+    		
+    		HttpEntity<HashMap<String, Object>> requestBody = new HttpEntity<>(json , headers);
+    		Object authorizationResponse = restTemplate.postForObject(HISTORICURL+"/historic/new", requestBody, Object.class);
+    		System.out.println("Alarm test : "+(String) authorizationResponse);
             
           
             //retreive  last  inside temp

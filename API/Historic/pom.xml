@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.insa.soa.project</groupId>
-	<artifactId>Temperature</artifactId>
+	<artifactId>Historic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Temperature</name>
+	<name>Historic</name>
 	<description>SOA project for Spring Boot</description>
 
 	<properties>
@@ -57,51 +57,8 @@
 		    <version>20190722</version>
 		</dependency>
 		
-		<dependency>
-		    <groupId>om2m</groupId>
-		    <artifactId>om2m</artifactId>
-		    <version>1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/libs/om2m.jar</systemPath>
-		</dependency>
 		
-		<dependency>
-		    <groupId>om2m_client</groupId>
-		    <artifactId>om2m_client</artifactId>
-		    <version>1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/libs/om2m_client.jar</systemPath>
-		</dependency>
 		
-		<dependency>
-		    <groupId>om2m_mapper</groupId>
-		    <artifactId>om2m_mapper</artifactId>
-		    <version>1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/libs/om2m_mapper.jar</systemPath>
-		</dependency>
-		
-		<dependency>
-		    <groupId>obix</groupId>
-		    <artifactId>obix</artifactId>
-		    <version>1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/libs/obix.jar</systemPath>
-		</dependency>
-		<dependency>
-		    <groupId>org.json</groupId>
-		    <artifactId>json</artifactId>
-		    <version>20190722</version>
-		</dependency>
-		
-		<!-- Historic -->
-		<dependency>
-		    <groupId>Historic_model</groupId>
-		    <artifactId>Historic_model</artifactId>
-		    <version>1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/libs/services/Historic_model.jar</systemPath>
-		</dependency>
 	</dependencies>
 	
 	<build>

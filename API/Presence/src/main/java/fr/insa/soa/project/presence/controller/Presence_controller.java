@@ -17,8 +17,8 @@ import obix.io.ObixDecoder;
 public class Presence_controller {
 	
 	@GetMapping("/{numFloor}/{numRoom}/sensors/presence")
-	public Presence_controller check_Window_Open(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException {
-		Presence_controller presence_sens = new Presence_controller();
+	public Presence_model check_Window_Open(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException {
+		Presence_model presence_sens = new Presence_model();
 		Client client = new Client();
 		
 		Response resp = client.retrieve("http://localhost:8080/~/in-cse/in-name/Floor"+numFloor+"_Manager/ROOM"+numRoom+"/Presence/la", "admin:admin");

@@ -2,11 +2,15 @@ package fr.insa.soa.project.alarm.controller;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.xpath.XPathExpressionException;
 
 import org.eclipse.om2m.commons.resource.ContentInstance;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +30,7 @@ import obix.io.ObixEncoder;
 
 
 @RestController
-public class Alarm_Ressource {
+public class Alarm_controller {
 	@PostMapping(path ="/{floor}/{room}/sensors/alarm/new", consumes = "application/json", produces = "application/json")
 	public String pushto_OM2M(@RequestBody String requestUserDetails, @PathVariable int floor, @PathVariable int room) throws IOException{
 		System.out.println("Sevice Alarm");
@@ -34,7 +38,23 @@ public class Alarm_Ressource {
 		MapperInterface mapper = new Mapper();
 		final String ORIGINATOR = "admin:admin";
 		Instant currentTime = Instant.now();
+		final String HISTORICURL = "http://localhost:8000";
+		HttpHeaders headers = new HttpHeaders();
+		RestTemplate restTemplate = new RestTemplate();
+		
+		
+	    headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+	    headers.setContentType(MediaType.APPLICATION_JSON);
+	    
+	    
 
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		json.put("source", "alarm");
+		json.put("status", requestUserDetails);
+		
+		HttpEntity<HashMap<String, Object>> requestBody = new HttpEntity<>(json , headers);
+		Object authorizationResponse = restTemplate.postForObject(HISTORICURL+"/historic/new", requestBody, Object.class);
+		System.out.println("Alarm test : "+(String) authorizationResponse);
 		
 		dataInstance.setContent(getDataRep("Floor"+floor+"_Manager/ROOM"+room,"Alarm", requestUserDetails));
 		dataInstance.setContentInfo("application/obix:0");
@@ -50,16 +70,16 @@ public class Alarm_Ressource {
 	}	
 	
 	//Create obix object to insert in oneM2M tree
-		public static String getDataRep(String location, String category, String state) {
-			// Create the obix object
-			Obj obj = new Obj();
-			obj.add(new Str("location", location));
-			obj.add(new Str("category", category));
-			obj.add(new Str("state", state));
+	public static String getDataRep(String location, String category, String state) {
+		// Create the obix object
+		Obj obj = new Obj();
+		obj.add(new Str("location", location));
+		obj.add(new Str("category", category));
+		obj.add(new Str("state", state));
 
-			return ObixEncoder.toString(obj);
+		return ObixEncoder.toString(obj);
 
-		}
+	}
 
 
 	@GetMapping("/{numFloor}/{numRoom}/sensors/alarm")
@@ -92,16 +112,5 @@ public class Alarm_Ressource {
 		alarm_sens.setCategory(obj.get("category").toString());
 		alarm_sens.setStatus(obj.get("state").toString());
 		return alarm_sens;
-	}
-	
-	@GetMapping("/{numFloor}/{numRoom}/sensors/alarm/history")
-	public ArrayList<String> getHistory(@PathVariable int numFloor, @PathVariable int numRoom) throws IOException, XPathExpressionException {
-		
-		Alarm_model alarm_sens = new Alarm_model();
-		for (int i = 0; i<alarm_sens.getHistoric().size(); i++){
-			System.out.print(alarm_sens.getHistoric().get(i).toString());
-		}
-		return alarm_sens.getHistoric();
-		
 	}
 }
