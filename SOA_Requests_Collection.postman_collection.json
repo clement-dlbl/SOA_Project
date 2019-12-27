@@ -1,0 +1,615 @@
+{
+	"info": {
+		"_postman_id": "1f892992-3bb3-479c-8b4d-be574970c639",
+		"name": "SOA_Requests_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Floor1 Manager",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:ae xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Floor1_Manager\">\n    <api> app-sensor \n    </api>\n    <rr> false \n    </rr>\n</m2m:ae>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Outside Temperature Sensor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cnt xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Outside_Temp\">\n\t<lbl>Type/sensor Category/Temperature Location/Floor1</lbl>\n</m2m:cnt>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Inside Temperature Sensor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cnt xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Inside_Temp\">\n\t\t<lbl>Type/sensor Category/Temperature Location/Floor1</lbl>\n</m2m:cnt>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Window Sensor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cnt xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Window_Position\">\n\t\t<lbl>Type/sensor Category/Window Location/Floor1</lbl>\n</m2m:cnt>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Door Sensor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml; ty=3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cnt xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Door_Position\">\n\t\t<lbl>Type/sensor Category/Door Location/Floor1</lbl>\n</m2m:cnt>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Presence Sensor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cnt xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Presence_Detection\">\n\t\t<lbl>Type/sensor Category/Presence Location/Floor1</lbl>\n</m2m:cnt>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Alarm",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cnt xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Alarm\">\n\t\t<lbl>Type/sensor Category/Alarm Location/Floor1</lbl>\n</m2m:cnt>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Lux Meter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=3",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cnt xmlns:m2m = \"http://www.onem2m.org/xml/protocols\" rn = \"Lux_Meter\">\n\t\t<lbl>Type/sensor Category/Light Location/Floor1</lbl>\n</m2m:cnt>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Value Outside Temp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n    <cnf>message</cnf>\n    <con>\n\n      &lt;obj&gt;\n\n        &lt;str name=&quot;category&quot; val=&quot;temperature &quot;/&gt;\n\n        &lt;int name=&quot;data&quot; val=&quot;23&quot;/&gt;\n\n        &lt;int name=&quot;unit&quot; val=&quot;celsius&quot;/&gt;\n\n      &lt;/obj&gt;\n\n    </con>\n</m2m:cin>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Outside_Temp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager",
+						"Outside_Temp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Value Inside Temp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n    <cnf>message</cnf>\n    <con>\n\n      &lt;obj&gt;\n\n        &lt;str name=&quot;category&quot; val=&quot;temperature &quot;/&gt;\n\n        &lt;int name=&quot;data&quot; val=&quot;27&quot;/&gt;\n\n        &lt;int name=&quot;unit&quot; val=&quot;celsius&quot;/&gt;\n\n      &lt;/obj&gt;\n\n    </con>\n</m2m:cin>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Inside_Temp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager",
+						"Inside_Temp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Value Window Position",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n    <cnf>message</cnf>\n    <con>\n\n      &lt;obj&gt;\n\n        &lt;str name=&quot;category&quot; val=&quot;Window &quot;/&gt;\n\n        &lt;int name=&quot;data&quot; val=&quot;OPEN&quot;/&gt;\n\n      &lt;/obj&gt;\n\n    </con>\n</m2m:cin>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Window_Position",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager",
+						"Window_Position"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Value Door Position",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n    <cnf>message</cnf>\n    <con>\n\n      &lt;obj&gt;\n\n        &lt;str name=&quot;category&quot; val=&quot;Door &quot;/&gt;\n\n        &lt;int name=&quot;data&quot; val=&quot;OPEN&quot;/&gt;\n\n      &lt;/obj&gt;\n\n    </con>\n</m2m:cin>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Door_Position",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager",
+						"Door_Position"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Value Presence",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n    <cnf>message</cnf>\n    <con>\n\n      &lt;obj&gt;\n\n        &lt;str name=&quot;category&quot; val=&quot;Presence &quot;/&gt;\n\n        &lt;int name=&quot;data&quot; val=&quot;TRUE&quot;/&gt;\n\n      &lt;/obj&gt;\n\n    </con>\n</m2m:cin>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Presence_Detection",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager",
+						"Presence_Detection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Value Alarm",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n    <cnf>message</cnf>\n    <con>\n\n      &lt;obj&gt;\n\n        &lt;str name=&quot;category&quot; val=&quot;Alarm &quot;/&gt;\n\n        &lt;int name=&quot;data&quot; val=&quot;OFF&quot;/&gt;\n\n      &lt;/obj&gt;\n\n    </con>\n</m2m:cin>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Alarm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager",
+						"Alarm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Value Lights",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-M2M-Origin",
+						"value": "admin:admin",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml ; ty=4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<m2m:cin xmlns:m2m=\"http://www.onem2m.org/xml/protocols\">\n    <cnf>message</cnf>\n    <con>\n\n      &lt;obj&gt;\n\n        &lt;str name=&quot;category&quot; val=&quot;Light &quot;/&gt;\n\n        &lt;int name=&quot;data&quot; val=&quot;ON&quot;/&gt;\n\n      &lt;/obj&gt;\n\n    </con>\n</m2m:cin>"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/~/in-cse/in-name/Floor1_Manager/Lux_Meter",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"~",
+						"in-cse",
+						"in-name",
+						"Floor1_Manager",
+						"Lux_Meter"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

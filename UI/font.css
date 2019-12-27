@@ -1,0 +1,34 @@
+.title {
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    margin :0;
+    padding: 0;
+    object-fit: contain;
+    text-align: center;
+    }
+img{
+    margin: auto;
+    width: 150px;
+    height: auto;
+}
+#logoINSA{
+    float: left;
+}
+#logoISS{
+    float: right;
+}
+
+.menuROOM{
+    margin-left: 5%;
+  }
+.informationTable{
+      margin-left: 30%;
+      margin-right: auto;
+      margin-top: -3% ;
+}
+
+#sensorActuator{
+    margin-left: 60%;
+    margin-right: auto;
+    margin-top: -3% ;
+}
