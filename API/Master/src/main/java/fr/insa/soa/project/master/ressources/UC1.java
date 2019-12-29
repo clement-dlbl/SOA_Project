@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashMap;
 
 import org.json.JSONException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import fr.insa.soa.project.presence.model.Presence_model;
 
 @RestController
 public class UC1 {
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/Use_Case_1/{numFloor}/{numRoom}")
 	public HashMap<String, String> getAlarm(@PathVariable int numFloor, @PathVariable int numRoom) throws JSONException {
 		//Simulate data base
@@ -38,8 +39,6 @@ public class UC1 {
 			res.put("state", uc1_main.triggerAlarm(res_presence.getStatus() == "true",res_alarm.getStatus(), numRoom, numFloor, restTemplate));
 			
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return res;
