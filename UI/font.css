@@ -1,3 +1,9 @@
+h2{
+    font-style: italic;
+    text-align: center;
+    background-color:aliceblue;
+    border-style: double;
+}
 .title {
     border-bottom-style: solid;
     border-bottom-color: black;
@@ -22,13 +28,21 @@ img{
     margin-left: 5%;
   }
 .informationTable{
-      margin-left: 30%;
+      margin-left: 43%;
       margin-right: auto;
-      margin-top: -3% ;
+      border-style: double;
 }
-
-#sensorActuator{
-    margin-left: 60%;
-    margin-right: auto;
-    margin-top: -3% ;
+aside {
+    width: 50%;
+    float: right;
+}
+.information{
+    float: left;
+    width: 50%;
+}
+.detailUC {
+    padding-left: 5%;
+}
+#historic {
+    text-align: center;
 }

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ import fr.insa.soa.project.master.model.Config;
 
 @RestController
 public class UC2 {
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/Use_Case_2/{numFloor}/{numRoom}")
 	public HashMap<String, String> getTemperature(@PathVariable int numFloor, @PathVariable int numRoom) {
 		//Simulate data base
@@ -35,7 +36,6 @@ public class UC2 {
 		HttpHeaders headers = new HttpHeaders();
 		
 		
-		try {
 			//System.out.println(resIntempLast.toString());
 
 			//Generate an Inside Temp  http://localhost:8082/2/200/sensors/temperature/inside/new
@@ -88,10 +88,7 @@ public class UC2 {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} catch (JSONException e1) {
-			e1.printStackTrace();
-		}
 		return res;
-	}
+		}
 	
 }

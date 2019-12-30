@@ -4,16 +4,16 @@ import java.time.Instant;
 import java.util.HashMap;
 
 public final class Historic_model {
-	private static HashMap<String, String> historic = new HashMap<String, String>();
+	private static HashMap<String, Log> historic = new HashMap<String, Log>();
 	
 	
-	public static HashMap<String, String> gethistoric() {
+	public static HashMap<String, Log> gethistoric() {
 		return historic;
 	}
 	
-	public static void addLogToHistoric(String source, String log) {
+	public static void addLogToHistoric(Log log) {
 		Instant instant = Instant.now();
-		historic.put(source+","+instant.toString(), log);
+		historic.put(instant.toString(), log);
 	}
 	
 	

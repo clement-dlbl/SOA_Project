@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>SOA Manage Building</title>
     <link rel="stylesheet" type="text/css" href="font.css">
     <script type="text/javascript" src="my.js"></script>
@@ -24,7 +25,7 @@
             </select>
           </th>
           <th>
-            <select id="room-choice" onchange="manageMenuRoom(this.value)">
+            <select id="room-choice" onchange="manageMenuRoom(this.value)" rerender="form">
                 <option>Please choose from above</option>
             </select>
           </th>
@@ -36,15 +37,22 @@
     <th>
       <div id="informationFloor"></div>
     </th>
-  </tr>
-  <tr>
-    <td>
+    <th></th>
+    <th>
       <div id="informationRoom"></div>
-    </td>
+    </th>
   </tr>
 </table>
-<div id="sensorActuator">
-</div>
+  <div class="information">
+    <h2>Information</h2>
+    <table id="detailUC1" class ="detailUC"></table>
+    <table id="detailUC2" class ="detailUC"></table>
+  </div>
+  <aside>
+      <h2>Historic Global</h2>
+      <table id="historic"></table>
+    </div>
+</aside>
 
 
 
