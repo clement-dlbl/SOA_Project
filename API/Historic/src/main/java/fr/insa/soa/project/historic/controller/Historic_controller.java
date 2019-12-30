@@ -5,8 +5,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
+
+import java.io.StringWriter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,27 +41,35 @@ public class Historic_controller {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/historic")	
 	public String retrieveAllHistoric() {
-		JSONObject jo = new JSONObject();
-		JSONArray ja = new JSONArray();
+		JsonObjectBuilder mainObj = Json.createObjectBuilder();
+		JsonArrayBuilder ja = Json.createArrayBuilder();
+
 		Set cles = Historic_model.gethistoric().keySet();
 		Iterator it = cles.iterator();
 		int i = 0;
 		while (it.hasNext()){
-		   System.out.print(i++);
-		   Object cle = it.next();
-		   Log valeur = Historic_model.gethistoric().get(cle);
-		   jo.put(valeur.getDateId(), valeur.getDateValue());
-		   jo.put(valeur.getLogTypeId(), valeur.getLogTypeValue());
-		   jo.put(valeur.getSourceId(), valeur.getSourceValue());
-		   jo.put(valeur.getLogValueId(), valeur.getLogValueValue());
-		   System.out.println(jo.toString());
-		   ja.put(jo);
+			JsonObjectBuilder job = Json.createObjectBuilder();
+			System.out.print(i++);
+			Object cle = it.next();
+			Log valeur = Historic_model.gethistoric().get(cle);
+			job.add(valeur.getDateId(), valeur.getDateValue());
+			job.add(valeur.getLogTypeId(), valeur.getLogTypeValue());
+			job.add(valeur.getSourceId(), valeur.getSourceValue());
+			job.add(valeur.getLogValueId(), valeur.getLogValueValue());
+			JsonObject jo = job.build();
+			System.out.println(jo.toString());
+			ja.add(jo);
+			System.out.println(ja.toString());
 		
 		}
-		JSONObject mainObj = new JSONObject();
-		mainObj.put("historic", ja);
-		System.out.println(mainObj.toString());
-		return mainObj.toString();
+		JsonArray array = ja.build();
+		mainObj.add("historic", array);
+		JsonObject empObj = mainObj.build();
+	    StringWriter stringWriter = new StringWriter();
+        JsonWriter jsonWriter = Json.createWriter(stringWriter);
+        jsonWriter.writeObject(empObj);
+        jsonWriter.close();
+		return stringWriter.toString();
 	}
 	
 }

@@ -50,11 +50,20 @@
 		    <version>2.6</version>
 		</dependency>
 		
-		<!-- org.json   -->
+		<!-- org.json   
 		<dependency>
 		    <groupId>org.json</groupId>
 		    <artifactId>json</artifactId>
 		    <version>20190722</version>
+		</dependency> -->
+		<dependency>
+		    <groupId>javax.json</groupId>
+		    <artifactId>javax.json-api</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.glassfish</groupId>
+		  <artifactId>javax.json</artifactId>
+		  <version>1.0.4</version>
 		</dependency>
 		
 		

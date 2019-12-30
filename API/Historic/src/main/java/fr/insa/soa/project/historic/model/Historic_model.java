@@ -3,8 +3,6 @@ package fr.insa.soa.project.historic.model;
 import java.time.Instant;
 import java.util.HashMap;
 
-import org.json.JSONObject;
-
 public final class Historic_model {
 	private static HashMap<String, Log> historic = new HashMap<String, Log>();
 	
