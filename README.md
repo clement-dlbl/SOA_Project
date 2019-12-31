@@ -8,7 +8,7 @@
 
 # OneM2M Architecture
 
-An overview of services implemented
+An overview of services implementation
 ![Service Architecture](img/SOAArchitecture1.PNG "Service Architectur")
 
 The oneM2M Architecture:
