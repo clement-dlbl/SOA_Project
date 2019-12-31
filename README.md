@@ -59,7 +59,7 @@ Finally run a browser on your computer:
 and open index.html file in UI folder to see front Application.
 
 ![Dashboards](img/SOAAPI.png "Dashbaords")
-![Dashboards](img/SOAAPI1.png "Dashbaords2")
+![Dashboards](img/APISOA1.png "Dashbaords2")
 
 Here you go ! OUF 
 You are ready to use our app !! 
