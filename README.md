@@ -9,10 +9,10 @@
 # OneM2M Architecture
 
 An overview of services implemented
-![OneM2M Architecture](img/SOAArchitecture1.png "OneM2M Architecture")
+![Service Architecture](img/SOAArchitecture1.PNG "Service Architectur")
 
 The oneM2M Architecture:
-![OneM2M Architecture](img/SOAArchitecture2.png "OneM2M Architecture")
+![OneM2M Architecture](img/SOAArchitecture2.PNG "OneM2M Architecture")
 
 # Files project Hierarchy
 ```
@@ -48,7 +48,7 @@ SOA_Project
 
   You should see the same result as below
   
-![OneM2M Architecture](img/resultatoneM2M.png "OneM2M Architecture")
+![OneM2M Architecture](img/resultatoneM2M.png "OneM2M Architecture after implementation")
 
 
 => Then open project on eclipse
