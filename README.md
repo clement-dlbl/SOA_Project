@@ -8,8 +8,11 @@
 
 # OneM2M Architecture
 
+An overview of services implemented
+![OneM2M Architecture](img/SOAArchitecture1.png "OneM2M Architecture")
 
-![OneM2M Architecture](img/SOA_Architecture.png "OneM2M Architecture")
+The oneM2M Architecture:
+![OneM2M Architecture](img/SOAArchitecture2.png "OneM2M Architecture")
 
 # Files project Hierarchy
 ```
