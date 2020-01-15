@@ -30,8 +30,8 @@ import om2m_mapper.MapperInterface;
 public class Temperature_controller {
 	
 	private static final String ORIGINATOR = "admin:admin";
-	private static final int Min = 0;
-	private static final int Max = 20;
+	private static final int Min = 15;
+	private static final int Max = 29;
 	private Client client = new Client();
 	private ContentInstance dataInstance = new ContentInstance();
 	private MapperInterface mapper = new Mapper();
